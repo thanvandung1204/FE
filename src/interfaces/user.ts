@@ -7,16 +7,8 @@ export interface IUser {
     email: string;
     password: string;
     role: IRole;
-    status: "Active" | "Inactive";
+    trang_thai: "Active" | "Inactive";
     image_url: string; 
     favoriteProducts: string[]; 
     addressUser: string[];     
-}
-
-export interface IUpdateUser {
-    _id: string | number;
-    name: string;
-    fullname: string;
-    ngaysinh: Date;
-    confirmPassword: string;
 }

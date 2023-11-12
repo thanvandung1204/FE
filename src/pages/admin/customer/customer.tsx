@@ -16,7 +16,7 @@ const AdminCustomer = (props: Props) => {
     removeCustomer(id);
   };
   const dataSource = customerData?.customers?.map((customer: ICustomer) => ({
-    key: customer._id,
+    key: customer.id,
     name: customer.name,
     fullname: customer.fullname,
     ngaysinh: customer.ngaysinh,

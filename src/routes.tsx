@@ -38,7 +38,7 @@ export const routers = createBrowserRouter([
         element: <AdminUserAdd />,
       },
       {
-        path: "user/:idUser/edit",
+        path: "user/:id/edit",
         element: <AdminEditUser />,
       },
       {

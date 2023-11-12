@@ -1,11 +1,12 @@
 import { useGetUserByIdQuery, useUpdateUserMutation } from "../../../api/user";
-import { IUpdateUser } from "../../../interfaces/user";
+import { IUser } from "../../../interfaces/user";
 import { Button, Form, Input, Skeleton } from "antd";
 import { useEffect } from "react";
 import LoadingOutlined from "@ant-design/icons";
 import { useNavigate, useParams } from "react-router-dom";
 
 type FieldType = {
+  _id: string | number;
   name: string;
   fullname?: string;
   ngaysinh?: Date;
@@ -13,25 +14,26 @@ type FieldType = {
 };
 
 const AdminEditUser = () => {
-  const { idUser } = useParams<{ idUser: string | number}>();
-  const { data: userData, isLoading } = useGetUserByIdQuery(idUser || "");
+  const { id } = useParams<{ id: string }>();
+  const { data: userData, isLoading } = useGetUserByIdQuery(String(id));
   const [updateUser] = useUpdateUserMutation();
   const navigate = useNavigate();
   const [form] = Form.useForm();
 
   useEffect(() => {
     form.setFieldsValue({
-      name: userData?.name,
-      fullname: userData?.fullname,
-      ngaysinh: userData?.ngaysinh,
-      confirmPassword: userData?.confirmPassword,
+      _id: userData?.user._id,
+      name: userData?.user.name,
+      fullname: userData?.user.fullname,
+      ngaysinh: userData?.user.ngaysinh,
+      confirmPassword: "",
     });
   }, [userData, form]);
 
   const onFinish = (values: FieldType) => {
-    const updatedUser: IUpdateUser = {
+    const updatedUser: FieldType = {
       ...values,
-      _id: idUser | "",
+      _id,
     };
 
     updateUser(updatedUser)
@@ -42,7 +44,7 @@ const AdminEditUser = () => {
   return (
     <div>
       <header className="mb-4">
-        <h2 className="font-bold text-2xl">Sửa User : {userData?.name}</h2>
+        <h2 className="font-bold text-2xl">Sửa User : {userData?.user.name}</h2>
       </header>
       {isLoading ? (
         <Skeleton />
@@ -50,6 +52,7 @@ const AdminEditUser = () => {
         <Form
           form={form}
           name="basic"
+          initialValues={userData?.users}
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           style={{ maxWidth: 600 }}
@@ -75,8 +78,8 @@ const AdminEditUser = () => {
             <Input />
           </Form.Item>
 
-          <Form.Item label="Nhập lại mật khẩu" name="confrimPassword">
-            <Input />
+          <Form.Item label="Nhập lại mật khẩu" name="confirmPassword">
+            <Input.Password />
           </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

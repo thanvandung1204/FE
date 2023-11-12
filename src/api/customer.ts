@@ -1,4 +1,4 @@
-import { ICustomer, IUpdateCustomer } from '../interfaces/customer';
+import { ICustomer } from '../interfaces/customer';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const customerApi = createApi({
@@ -6,9 +6,6 @@ const customerApi = createApi({
     tagTypes: ['Customer'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080/api',
-        fetchFn: async (...args) => {
-            return fetch(...args);
-        }
     }),
     endpoints: (builder) => ({
         getCustomer: builder.query<ICustomer[], void>({
@@ -34,10 +31,10 @@ const customerApi = createApi({
             }),
             invalidatesTags: ['Customer']
         }),
-        updateCustomer: builder.mutation<IUpdateCustomer, IUpdateCustomer>({
+        updateCustomer: builder.mutation<ICustomer, ICustomer>({
             query: (customer) => ({
-                url: `/customer/${customer._id}`,
-                method: "PUT",
+                url: `/customer/${customer.id}`,
+                method: "PATCH",
                 body: customer
             }),
             invalidatesTags: ['Customer']
