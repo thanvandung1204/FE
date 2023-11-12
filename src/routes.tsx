@@ -13,6 +13,7 @@ export const routers = createBrowserRouter([
       },
     ],
   },
+  
   {
     path: "/admin",
     element: <AdminLayout />,
@@ -23,8 +24,11 @@ export const routers = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "*",
     element: "NotFound Page nhé",
   },
+ 
+  
 ]);
