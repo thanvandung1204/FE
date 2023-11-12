@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState,  } from 'react';
 import {
   DesktopOutlined,
   FileOutlined,
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
+  UnorderedListOutlined,
+  DeleteOutlined
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Outlet , Link} from 'react-router-dom';
+
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -28,18 +32,37 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Option 1', '1', <PieChartOutlined />),
+  getItem(<Link to="/">Dashboard</Link>, '1', <PieChartOutlined />),
   getItem('Option 2', '2', <DesktopOutlined />),
   getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
+    getItem('Tom', '3', ),
     getItem('Bill', '4'),
     getItem('Alex', '5'),
   ]),
   getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
   getItem('Files', '9', <FileOutlined />),
+  getItem(<Link to="/admin/product">Product</Link>, '10', <UnorderedListOutlined/>,
+  [
+    getItem(<Link to="/admin/product">List</Link>, '11', ),
+    getItem(<Link to="/admin/product/add">Add</Link>, '12'),
+    getItem(<Link to="/admin/product/recycle"><DeleteOutlined /></Link>, '13'),
+
+  ]),
+  getItem(<Link to="/admin/size">Size</Link>, '14', <UnorderedListOutlined/>,
+  [
+    getItem(<Link to="/admin/size">List</Link>, '15', ),
+    getItem(<Link to="/admin/size/add">Add</Link>, '16'),
+    getItem(<Link to="/admin/size/update/:id">update</Link>, '70')
+  ]),
+  getItem(<Link to="/admin/imageProduct">ImgProduct</Link>, '18', <UnorderedListOutlined/>,
+  [
+    getItem(<Link to="/admin/imageProduct">List</Link>, '19', ),
+    getItem(<Link to="/admin/imageProduct/add">Add</Link>, '20'),
+    getItem(<Link to="/admin/imageProduct/update/:id">update</Link>, '21'),
+  ]),
 ];
 
-const App: React.FC = () => {
+const AdminLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -195,17 +218,19 @@ const App: React.FC = () => {
 </header>
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
+            
             <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
-            Bill is a cat.
+          <Outlet/>
           </div>
         </Content>
+       
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
       </Layout>
     </Layout>
   );
 };
 
-export default App;
+export default AdminLayout;
