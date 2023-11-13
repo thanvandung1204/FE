@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Form, Input, notification, InputNumber, Select } from 'antd';
-import { useGetSizeByIdQuery, useGetSizesQuery } from '@/api/sizes';
+import { Button, Form, Input, notification, Select } from 'antd';
+import { useGetSizesQuery } from '@/api/sizes';
 import { useGetProductByIdQuery, useUpdateProductMutation } from '@/api/product';
-
+const { Option } = Select;
 const UpdateSize = () => {
     const { id } = useParams<{ id: string }>();
 
@@ -138,13 +138,12 @@ const UpdateSize = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-    label="Image"
-    name="image"
-    rules={[{ required: true, message: 'Please input your image!' }]}
->
-    <Input />
-    {form.getFieldValue('image') && <img src={form.getFieldValue('image')} alt="Product" />}
-</Form.Item>
+                    label="Image"
+                    name="image.image"
+                    rules={[{ required: true, message: 'Please input your image!' }]}
+                >
+                    <Input />
+                </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button  htmlType="submit">
                         Add New Product

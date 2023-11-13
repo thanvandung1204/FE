@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Space, Table, Spin, notification } from 'antd';
+import  { useState } from 'react';
+import { Button, Table, Spin, notification } from 'antd';
 import { DeleteTwoTone, EditOutlined } from '@ant-design/icons';
 import { useGetProductsQuery, useRemoveProductMutation } from '../../../api/product';
 import { IProduct } from '../../../interfaces/product';

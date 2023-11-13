@@ -1,16 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 // import { MyComponent } from "./components";
-import { AdminLayout, ClientLayout } from "./layout";
-import Product from "./pages/admin/Product/Product"
+import { AdminLayout, ClientLayout } from "./pages/layout"
+import Product from "./components/admin/Product/Product"
 
-import AddProduct from "./pages/admin/Product/AddProduct"
-import Size from "./pages/admin/size/size"
-import AddSize from "./pages/admin/size/AddSize"
-import UpdateProduct from "./pages/admin/Product/UpdateProduct";
-import RecycleBin from "./pages/admin/Product/recycle-bin";
-import UpdateSize from "./pages/admin/size/UpdateSize";
-import ImageProduct from "./pages/admin/imageProduct/imageProduct"
-import AddImage from "./pages/admin/imageProduct/AddImage";
+import AddProduct from "./components/admin/Product/AddProduct"
+import Size from "./components/admin/size/size"
+import AddSize from "./components/admin/size/AddSize"
+import UpdateProduct from "./components/admin/Product/UpdateProduct";
+import RecycleBin from "./components/admin/Product/recycle-bin";
+import UpdateSize from "./components/admin/size/UpdateSize";
+import ImageProduct from "./components/admin/imageProduct/imageProduct"
+import AddImage from "./components/admin/imageProduct/AddImage";
 export const routers = createBrowserRouter([
   {
     path: "/",
