@@ -18,6 +18,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import CommentApi from '@/api/comment';
+import categoryApi, { categoryReducer } from '@/api/category';
+import contactApi, { contactReducer } from '@/api/contact';
+import informationApi, { informationReducer } from '@/api/information';
 const persistConfig = {
     key: 'root',
     storage,
@@ -30,11 +33,14 @@ const rootReducer = combineReducers({
     [imagetintucApi.reducerPath]: ImagetintucReducer,
     [tintucApi.reducerPath]: TintucReducer,
     [commentsApi.reducerPath]: CommentReducer,
+    [categoryApi.reducerPath]:  categoryReducer,
+    [contactApi.reducerPath]: contactReducer,
+    [informationApi.reducerPath]: informationReducer
     
 
     // [authApi.reducerPath]: authReducer
 })
-const middleware = [productApi.middleware, sizeApi.middleware ,imageProductApi.middleware,imagetintucApi.middleware, tintucApi.middleware, commentsApi.middleware]
+const middleware = [productApi.middleware, sizeApi.middleware ,imageProductApi.middleware,imagetintucApi.middleware, tintucApi.middleware, commentsApi.middleware, categoryApi.middleware, contactApi.middleware, informationApi.middleware]
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
     reducer: persistedReducer,
