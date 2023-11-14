@@ -26,7 +26,7 @@ const productApi = createApi({
         updateProduct: builder.mutation<IProduct, IProduct>({
             query: (product) => ({
                 url: `/products/${product.id}`,
-                method: "PATCH",
+                method: "PUT",
                 body: product
             })
         }),

@@ -19,6 +19,7 @@ import ImageTinTuc from "./components/admin/imagetintuc/list";
 import ThemTinTuc from "./components/admin/tintuc/add";
 import DanhSachTinTuc from "./components/admin/tintuc/list";
 import SuaTinTuc from "./components/admin/tintuc/update";
+import UpdateImage from "./components/admin/imageProduct/UpdateImage";
 export const routers = createBrowserRouter([
   {
     path: "/",
@@ -71,10 +72,10 @@ export const routers = createBrowserRouter([
         path: "imageProduct/add",
         element: <AddImage/>,
       },
-      // {
-      //   path: "size/update/:id",
-      //   element: <UpdateSize/>,
-      // },
+      {
+        path: "imageProduct/update/:id",
+        element: <UpdateImage/>,
+      },
       {
         path: "/admin",
         element: <HomeAdmin/>,

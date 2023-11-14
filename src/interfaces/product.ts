@@ -1,5 +1,5 @@
 export interface IProduct {
-  id: number| string;
+  _id?: number| string;
   name: string;
   price: number;
   image: Array<string>;
@@ -7,4 +7,6 @@ export interface IProduct {
   category: string;  
   quanlity : number;
   description: string;
+  trang_thai: string
+
 }

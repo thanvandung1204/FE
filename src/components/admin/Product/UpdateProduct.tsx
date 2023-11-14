@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Form, Input, notification, Select } from 'antd';
 import { useGetSizesQuery } from '@/api/sizes';
 import { useGetProductByIdQuery, useUpdateProductMutation } from '@/api/product';
+import { useGetImageProductsQuery } from '@/api/imageProduct';
 const { Option } = Select;
 const UpdateSize = () => {
     const { id } = useParams<{ id: string }>();
@@ -10,11 +11,12 @@ const UpdateSize = () => {
     const [UpdateProduct] = useUpdateProductMutation();
     const { data, isLoading,refetch } = useGetProductByIdQuery(String(id));
     const { data: size } = useGetSizesQuery();
+    const {data : image} = useGetImageProductsQuery()
     console.log(data);
     const [form] = Form.useForm();
     useEffect(() => {
         form.setFieldsValue({
-            _id: data?.id,
+            _id: data?._id,
             name: data?.name,
             price: data?.price,
             image: data?.image,
@@ -22,6 +24,7 @@ const UpdateSize = () => {
             category: data?.category,
             quanlity: data?.quanlity,
             description: data?.description,
+            trang_thai: data?.trang_thai,
         });
     }, [data, form]);
     const onFinish = async (values: any) => {
@@ -63,6 +66,24 @@ const UpdateSize = () => {
                     label="Product Name"
                     name="name"
                     rules={[{ required: true, message: 'Please input your Name Product!' }, { min: 5, message: 'Product Name must be at least 5 characters.' }]}
+                >
+                    <Input />
+                </Form.Item>
+                
+                <Form.Item
+                    label="Price"
+                    name="price"
+                    rules={[
+                        { required: true, message: 'Please input your Price Product!' },
+                        {
+                            validator: (_, value) => {
+                                if (!value || !isNaN(Number(value))) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject('Price must be a number');
+                            }
+                        }
+                    ]}
                 >
                     <Input />
                 </Form.Item>
@@ -130,13 +151,25 @@ const UpdateSize = () => {
                 >
                     <Input />
                 </Form.Item>
+                <Form.Item label="Trạng thái" name="trang_thai">
+          <Select>
+            <Select.Option value="active">active</Select.Option>
+          </Select>
+        </Form.Item>
                 <Form.Item
                     label="Image"
-                    name="image.image"
+                    name="image"
                     rules={[{ required: true, message: 'Please input your image!' }]}
                 >
-                    <Input />
+                    <Select mode="multiple" placeholder="Select a size">
+                    {Array.isArray(image) && image.map((image:any) => (
+    <Option key={image.id} value={image.id}>
+        {image.name}
+    </Option>
+))}
+                    </Select>
                 </Form.Item>
+                
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button  htmlType="submit">
                         Add New Product
