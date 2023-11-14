@@ -6,17 +6,12 @@ import { useGetProductByIdQuery, useUpdateProductMutation } from '@/api/product'
 const { Option } = Select;
 const UpdateSize = () => {
     const { id } = useParams<{ id: string }>();
-
-
     const navigate = useNavigate();
     const [UpdateProduct] = useUpdateProductMutation();
     const { data, isLoading,refetch } = useGetProductByIdQuery(String(id));
     const { data: size } = useGetSizesQuery();
     console.log(data);
-    
-
     const [form] = Form.useForm();
-
     useEffect(() => {
         form.setFieldsValue({
             _id: data?.id,
@@ -29,8 +24,6 @@ const UpdateSize = () => {
             description: data?.description,
         });
     }, [data, form]);
-
-
     const onFinish = async (values: any) => {
         try {
             const UpdateProducts = await UpdateProduct({  ...values ,id}).unwrap();

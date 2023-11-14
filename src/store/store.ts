@@ -2,6 +2,9 @@
 import imageProductApi, { imageProductReducer } from '@/api/imageProduct';
 import productApi, { productReducer } from '@/api/product';
 import sizeApi, { sizeReducer } from '@/api/sizes';
+import imagetintucApi, { ImagetintucReducer } from '@/api/imagetintuc';
+import commentsApi, { CommentReducer } from '@/api/comment';
+import tintucApi, { TintucReducer } from '@/api/tintuc';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
     FLUSH,
@@ -13,9 +16,8 @@ import {
     persistReducer,
     persistStore,
 } from 'redux-persist';
-
 import storage from 'redux-persist/lib/storage';
-
+import CommentApi from '@/api/comment';
 const persistConfig = {
     key: 'root',
     storage,
@@ -25,12 +27,14 @@ const rootReducer = combineReducers({
     [productApi.reducerPath]: productReducer,
     [sizeApi.reducerPath]: sizeReducer,
     [imageProductApi.reducerPath]: imageProductReducer,
+    [imagetintucApi.reducerPath]: ImagetintucReducer,
+    [tintucApi.reducerPath]: TintucReducer,
+    [commentsApi.reducerPath]: CommentReducer,
+    
 
     // [authApi.reducerPath]: authReducer
 })
-const middleware = [productApi.middleware, sizeApi.middleware ,imageProductApi.middleware]
-
-
+const middleware = [productApi.middleware, sizeApi.middleware ,imageProductApi.middleware,imagetintucApi.middleware, tintucApi.middleware, commentsApi.middleware]
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
     reducer: persistedReducer,
@@ -41,7 +45,8 @@ export const store = configureStore({
             },
         }).concat(...middleware),
 })
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState> 
+
 export type AppDispatch = typeof store.dispatch
 
 export default persistStore(store);

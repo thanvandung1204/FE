@@ -11,6 +11,14 @@ import RecycleBin from "./components/admin/Product/recycle-bin";
 import UpdateSize from "./components/admin/size/UpdateSize";
 import ImageProduct from "./components/admin/imageProduct/imageProduct"
 import AddImage from "./components/admin/imageProduct/AddImage";
+import HomeAdmin from "./pages/layout/Admin/home_admin";
+import ListComment from "./components/admin/comment/list";
+import SuaImageTinTuc from "./components/admin/imagetintuc/update";
+import ThemImageTinTuc from "./components/admin/imagetintuc/add";
+import ImageTinTuc from "./components/admin/imagetintuc/list";
+import ThemTinTuc from "./components/admin/tintuc/add";
+import DanhSachTinTuc from "./components/admin/tintuc/list";
+import SuaTinTuc from "./components/admin/tintuc/update";
 export const routers = createBrowserRouter([
   {
     path: "/",
@@ -67,7 +75,38 @@ export const routers = createBrowserRouter([
       //   path: "size/update/:id",
       //   element: <UpdateSize/>,
       // },
-
+      {
+        path: "/admin",
+        element: <HomeAdmin/>,
+      },
+      {
+        path: "tintuc",
+        element: <DanhSachTinTuc/>,
+      },
+      {
+        path: "tintuc/add",
+        element: <ThemTinTuc/>,
+      },
+      {
+        path: "tintuc/:id",
+        element: <SuaTinTuc/>,
+      },
+      {
+        path: "imagetintuc",
+        element: <ImageTinTuc/>,
+      },
+      {
+        path: "imagetintuc/add",
+        element: <ThemImageTinTuc/>,
+      },
+      {
+        path: "imagetintuc/:id",
+        element: <SuaImageTinTuc/>,
+      },
+      {
+        path: "comments",
+        element: <ListComment/>,
+      },
      
       
     ],

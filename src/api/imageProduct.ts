@@ -22,9 +22,9 @@ const imageProductApi = createApi({
                 body: imageProduct
             })
         }),
-        updateImageProduct: builder.mutation<any, any>({
+        updateImageProduct: builder.mutation<ImageProduct,ImageProduct>({
             query: (imageProduct) => ({
-                url: `/imageProduct/${imageProduct.id}`,
+                url: `/imageProduct/${imageProduct._id}`,
                 method: "PUT",
                 body: imageProduct
             })
