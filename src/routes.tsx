@@ -32,6 +32,17 @@ import AdminInformation from "./components/admin/Inpormation";
 import InformationAdd from "./components/admin/Inpormation/add";
 import InformationEdit from "./components/admin/Inpormation/edit";
 
+
+import AdminUser from "./components/admin/user/user";
+import AdminUserAdd from "./components/admin/user/add";
+import AdminEditUser from "./components/admin/user/edit";
+import AdminCustomer from "./components/admin/customer/customer";
+import AdminCustomerAdd from "./components/admin/customer/add";
+import AdminCustomerEdit from "./components/admin/customer/edit";
+import AdminRole from "./components/admin/role/role";
+import AdminRoleAdd from "./components/admin/role/add";
+import AdminRoleEdit from "./components/admin/role/edit";
+
 export const routers = createBrowserRouter([
   {
     path: "/",
@@ -155,6 +166,42 @@ export const routers = createBrowserRouter([
       {
         path: "information/:idInformation/edit",
         element: <InformationEdit />,
+      },
+      {
+        path: "user",
+        element: <AdminUser/>,
+      },
+      {
+        path: "user/add",
+        element: <AdminUserAdd/>,
+      },
+      {
+        path: "user/edit/:id",
+        element: <AdminEditUser/>,
+      },
+      {
+        path: "customer",
+        element: <AdminCustomer/>,
+      },
+      {
+        path: "customer/add",
+        element: <AdminCustomerAdd/>,
+      },
+      {
+        path: "customer/edit/:id",
+        element: <AdminCustomerEdit/>,
+      },
+      {
+        path: "role",
+        element: <AdminRole/>,
+      },
+      {
+        path: "role/add",
+        element: <AdminRoleAdd/>,
+      },
+      {
+        path: "role/edit/:id",
+        element: <AdminRoleEdit/>,
       },
 
     ],

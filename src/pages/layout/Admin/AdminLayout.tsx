@@ -36,8 +36,8 @@ const items: MenuItem[] = [
   getItem(<Link to="/admin">Dashboard</Link>, '1', <PieChartOutlined />),
   getItem('Option 2', '2', <DesktopOutlined />),
   getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3',),
-    getItem('Bill', '4'),
+    getItem(<Link to="/admin/user">List</Link>, '3', ),
+    getItem(<Link to="/admin/user/add">Add</Link>, '4'),
   ]),
   getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
   getItem('Files', '9', <FileOutlined />),
@@ -73,7 +73,14 @@ const items: MenuItem[] = [
   getItem(<Link to="/admin/category">Danh mục</Link>, '29', <DesktopOutlined />),
   getItem(<Link to="/admin/contact">Contact</Link>, '30', <DesktopOutlined />),
   getItem(<Link to="/admin/information">Thông tin</Link>, '31', <DesktopOutlined />),
-
+  getItem('Customer', 'sub3', <UserOutlined />, [
+    getItem(<Link to="/admin/customer">List</Link>, '32', ),
+    getItem(<Link to="/admin/customer/add">Add</Link>, '33'),
+  ]),
+  getItem('Role', 'sub4', <UnorderedListOutlined />, [
+    getItem(<Link to="/admin/role">List</Link>, '34', ),
+    getItem(<Link to="/admin/role/add">Add</Link>, '35'),
+  ]),
 ];
 
 const AdminLayout: React.FC = () => {

@@ -21,6 +21,9 @@ import CommentApi from '@/api/comment';
 import categoryApi, { categoryReducer } from '@/api/category';
 import contactApi, { contactReducer } from '@/api/contact';
 import informationApi, { informationReducer } from '@/api/information';
+import roleApi, { roleReducer } from '@/api/role';
+import customerApi, { customerReducer } from '@/api/customer';
+import userApi, { userReducer } from '@/api/user';
 const persistConfig = {
     key: 'root',
     storage,
@@ -35,12 +38,15 @@ const rootReducer = combineReducers({
     [commentsApi.reducerPath]: CommentReducer,
     [categoryApi.reducerPath]:  categoryReducer,
     [contactApi.reducerPath]: contactReducer,
-    [informationApi.reducerPath]: informationReducer
+    [informationApi.reducerPath]: informationReducer,
+    [userApi.reducerPath]: userReducer,
+    [customerApi.reducerPath]: customerReducer,
+    [roleApi.reducerPath]: roleReducer,
     
 
     // [authApi.reducerPath]: authReducer
 })
-const middleware = [productApi.middleware, sizeApi.middleware ,imageProductApi.middleware,imagetintucApi.middleware, tintucApi.middleware, commentsApi.middleware, categoryApi.middleware, contactApi.middleware, informationApi.middleware]
+const middleware = [productApi.middleware, sizeApi.middleware ,imageProductApi.middleware,imagetintucApi.middleware, tintucApi.middleware, commentsApi.middleware, categoryApi.middleware, contactApi.middleware, informationApi.middleware, userApi.middleware, customerApi.middleware, roleApi.middleware]
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
     reducer: persistedReducer,
