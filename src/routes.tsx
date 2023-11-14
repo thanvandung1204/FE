@@ -20,6 +20,18 @@ import ThemTinTuc from "./components/admin/tintuc/add";
 import DanhSachTinTuc from "./components/admin/tintuc/list";
 import SuaTinTuc from "./components/admin/tintuc/update";
 import UpdateImage from "./components/admin/imageProduct/UpdateImage";
+
+
+import AdminCategory from "./components/admin/Category";
+import CategoryAdd from "./components/admin/Category/add";
+import CategoryEdit from "./components/admin/Category/edit";
+import AdminContact from "./components/admin/Contact";
+import ContactAdd from "./components/admin/Contact/add";
+import ContactEdit from "./components/admin/Contact/edit";
+import AdminInformation from "./components/admin/Inpormation";
+import InformationAdd from "./components/admin/Inpormation/add";
+import InformationEdit from "./components/admin/Inpormation/edit";
+
 export const routers = createBrowserRouter([
   {
     path: "/",
@@ -37,40 +49,40 @@ export const routers = createBrowserRouter([
     children: [
       {
         path: "product",
-        element: <Product products={[]}/>,
+        element: <Product products={[]} />,
       },
       {
         path: "product/add",
-        element: <AddProduct/>,
-  
+        element: <AddProduct />,
+
       },
       {
         path: "product/update/:id",
-        element: <UpdateProduct/>,
+        element: <UpdateProduct />,
       },
       {
         path: "product/recycle",
-        element: <RecycleBin/>,
+        element: <RecycleBin />,
       },
       {
         path: "size",
-        element: <Size/>,
+        element: <Size />,
       },
       {
         path: "size/add",
-        element: <AddSize/>,
+        element: <AddSize />,
       },
       {
         path: "size/update/:id",
-        element: <UpdateSize/>,
+        element: <UpdateSize />,
       },
       {
         path: "imageProduct",
-        element: <ImageProduct/>,
+        element: <ImageProduct />,
       },
       {
         path: "imageProduct/add",
-        element: <AddImage/>,
+        element: <AddImage />,
       },
       {
         path: "imageProduct/update/:id",
@@ -78,38 +90,73 @@ export const routers = createBrowserRouter([
       },
       {
         path: "/admin",
-        element: <HomeAdmin/>,
+        element: <HomeAdmin />,
       },
       {
         path: "tintuc",
-        element: <DanhSachTinTuc/>,
+        element: <DanhSachTinTuc />,
       },
       {
         path: "tintuc/add",
-        element: <ThemTinTuc/>,
+        element: <ThemTinTuc />,
       },
       {
         path: "tintuc/:id",
-        element: <SuaTinTuc/>,
+        element: <SuaTinTuc />,
       },
       {
         path: "imagetintuc",
-        element: <ImageTinTuc/>,
+        element: <ImageTinTuc />,
       },
       {
         path: "imagetintuc/add",
-        element: <ThemImageTinTuc/>,
+        element: <ThemImageTinTuc />,
       },
       {
         path: "imagetintuc/:id",
-        element: <SuaImageTinTuc/>,
+        element: <SuaImageTinTuc />,
       },
       {
         path: "comments",
-        element: <ListComment/>,
+        element: <ListComment />,
       },
-     
-      
+      {
+        path: "category",
+        element: <AdminCategory />,
+      },
+      {
+        path: "category/add",
+        element: <CategoryAdd />,
+      },
+      {
+        path: "category/:idCategory/edit",
+        element: <CategoryEdit />,
+      },
+      {
+        path: "contact",
+        element: <AdminContact />,
+      },
+      {
+        path: "contact/add",
+        element: <ContactAdd />,
+      },
+      {
+        path: "contact/:idContact/edit",
+        element: <ContactEdit />,
+      },
+      {
+        path: "information",
+        element: <AdminInformation />,
+      },
+      {
+        path: "information/add",
+        element: <InformationAdd />,
+      },
+      {
+        path: "information/:idInformation/edit",
+        element: <InformationEdit />,
+      },
+
     ],
   },
   {
