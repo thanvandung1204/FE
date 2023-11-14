@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 // import { MyComponent } from "./components";
 import { AdminLayout, ClientLayout } from "./pages/layout"
 import Product from "./components/admin/Product/Product"
-
+import Order from "./components/admin/order/order"
 import AddProduct from "./components/admin/Product/AddProduct"
 import Size from "./components/admin/size/size"
 import AddSize from "./components/admin/size/AddSize"
@@ -196,6 +196,10 @@ export const routers = createBrowserRouter([
       {
         path: "role/edit/:id",
         element: <AdminRoleEdit/>,
+      },
+      {
+        path: "order",
+        element: <Order/>,
       },
 
     ],
