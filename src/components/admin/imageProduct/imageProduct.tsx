@@ -27,7 +27,6 @@ const Image = (props: Props) => {
             });
         }
     }; 
-    
     const dataSource =  imageData && imageData.data ? imageData.data.map((image: any) => ({
         key: image?._id,
         image: image?.image,

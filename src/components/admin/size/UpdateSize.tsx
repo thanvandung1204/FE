@@ -5,14 +5,10 @@ import { useGetSizeByIdQuery, useUpdateSizeMutation } from '@/api/sizes';
 
 const UpdateSize = () => {
     const { id } = useParams<{ id: string }>();
-
-
     const navigate = useNavigate();
     const [updateSize] = useUpdateSizeMutation();
     const { data, isLoading,refetch } = useGetSizeByIdQuery(String(id));
-
     const [form] = Form.useForm();
-
     useEffect(() => {
         form.setFieldsValue({
             id: data?.id,

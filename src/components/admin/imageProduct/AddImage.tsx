@@ -23,7 +23,6 @@ const AddImageProduct: React.FC = () => {
     const onFinish = (size: any) => {
         console.log(size);
         addImageProduct(size);
-
         navigate('/admin/imageProduct');
         notification.success({
             message: 'Success',
