@@ -69,7 +69,10 @@ const items: MenuItem[] = [
       getItem(<Link to="/admin/tintuc/add">Thêm tin tức</Link>, '27'),
     ]),
   getItem(<Link to="/admin/comments">Comment</Link>, '28', <CommentOutlined />,
-  )
+  ),
+  getItem(<Link to="/admin/category">Danh mục</Link>, '29', <DesktopOutlined />),
+  getItem(<Link to="/admin/contact">Contact</Link>, '30', <DesktopOutlined />),
+  getItem(<Link to="/admin/information">Thông tin</Link>, '31', <DesktopOutlined />),
 
 ];
 
