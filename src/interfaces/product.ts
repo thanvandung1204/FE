@@ -4,7 +4,7 @@ export interface IProduct {
   price: number;
   image: Array<string>;
   sale: number,
-  category: string;  
+  categoryId: string;  
   quanlity : number;
   description: string;
   trang_thai: string

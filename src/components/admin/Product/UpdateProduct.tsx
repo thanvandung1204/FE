@@ -4,6 +4,10 @@ import { Button, Form, Input, notification, Select } from 'antd';
 import { useGetSizesQuery } from '@/api/sizes';
 import { useGetProductByIdQuery, useUpdateProductMutation } from '@/api/product';
 import { useGetImageProductsQuery } from '@/api/imageProduct';
+import { useGetCategorysQuery } from '@/api/category';
+import { ICategory } from '@/interfaces/category';
+import { ISize } from '@/interfaces/size';
+import { ImageProduct } from '@/interfaces/imageProduct';
 const { Option } = Select;
 const UpdateSize = () => {
     const { id } = useParams<{ id: string }>();
@@ -12,6 +16,7 @@ const UpdateSize = () => {
     const { data, isLoading,refetch } = useGetProductByIdQuery(String(id));
     const { data: size } = useGetSizesQuery();
     const {data : image} = useGetImageProductsQuery()
+    const {data : category} = useGetCategorysQuery()
     console.log(data);
     const [form] = Form.useForm();
     useEffect(() => {
@@ -21,7 +26,7 @@ const UpdateSize = () => {
             price: data?.price,
             image: data?.image,
             sale: data?.sale,
-            category: data?.category,
+            category: data?.categoryId,
             quanlity: data?.quanlity,
             description: data?.description,
             trang_thai: data?.trang_thai,
@@ -29,7 +34,19 @@ const UpdateSize = () => {
     }, [data, form]);
     const onFinish = async (values: any) => {
         try {
-            const UpdateProducts = await UpdateProduct({  ...values ,id}).unwrap();
+            const UpdateProducts = await UpdateProduct({  ...values ,_id:id}).unwrap();
+            if (Array.isArray(values.categoryId)) {
+                values.categoryId = values.categoryId.join(',');
+            }
+            if (Array.isArray(values.sizeItem)) {
+                values.sizeItem = values.sizeItem.join(',');
+
+            }
+            
+            refetch();
+            
+           
+
             navigate('/admin/product');
             notification.success({
                 message: 'Cập nhật thành công',
@@ -92,16 +109,14 @@ const UpdateSize = () => {
     name="sizes"
     rules={[{ required: true, message: 'Please select a size!' }]}
 >
-    
     <Select mode="multiple" placeholder="Select a size">
-                        {size?.map((sizes:any) => (
-                            <Option key={sizes.id} value={sizes.id}>
-                                {sizes.name}
-                            </Option>
-                        ))}
-                    </Select>
-    
-</Form.Item>
+        {size ? size.map((sizeItem: ISize) => (
+            <Option key={sizeItem._id} value={sizeItem._id}>
+                {sizeItem.name}
+            </Option>
+        )) : []}
+    </Select>
+</Form.Item>    
         <Form.Item
                     label="Sale"
                     name="sale"
@@ -147,9 +162,15 @@ const UpdateSize = () => {
                 <Form.Item
                     label="category"
                     name="categoryId"
-                    rules={[{ required: true, message: 'Please input your description!' }]}
+                    // rules={[{ required: true, message: 'Please input your description!' }]}
                 >
-                    <Input />
+                      <Select  placeholder="Select a size">
+        {category?.data.map((categoryId: ICategory) => (
+            <Option key={categoryId._id} value={categoryId._id}>
+                {categoryId.name}
+            </Option>
+        ))}
+    </Select>
                 </Form.Item>
                 <Form.Item label="Trạng thái" name="trang_thai">
           <Select>
@@ -161,13 +182,13 @@ const UpdateSize = () => {
                     name="image"
                     rules={[{ required: true, message: 'Please input your image!' }]}
                 >
-                    <Select mode="multiple" placeholder="Select a size">
-                    {Array.isArray(image) && image.map((image:any) => (
-    <Option key={image.id} value={image.id}>
-        {image.name}
-    </Option>
-))}
-                    </Select>
+                     <Select mode="multiple" style={{width: 200, height: 200}}  placeholder="Select a size" >
+        {image?.data.map((images: ImageProduct) => (
+            <Option key={images._id} value={images._id}>
+                <img src={images.image} alt="" width={100} />
+            </Option>
+        ))}
+    </Select>
                 </Form.Item>
                 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

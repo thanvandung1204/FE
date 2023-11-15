@@ -17,7 +17,7 @@ const addimageProduct = () => {
   const handleImageRemove = (url: string) => {
     setImg((prevImg: any) => prevImg.filter((imageUrl: string) => imageUrl !== url));
   };
-  const onSubmit: SubmitHandler<any> = async ({trang_thai, image,...FormData }:any) => {
+  const onSubmit: SubmitHandler<any> = async ({image,trang_thai,...FormData }:any) => {
     const data = {
       trang_thai: trang_thai,
       image: img,
@@ -33,7 +33,7 @@ const addimageProduct = () => {
   }
   return (
     <div>
-      <span className="text-2xl mb-6">Add New Image Tin Tức </span>
+      <span className="text-2xl mb-6">Add New ImageProduct </span>
       <form className='mt-5' onSubmit={handleSubmit(onSubmit)} >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-5">
 
