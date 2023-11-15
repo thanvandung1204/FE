@@ -40,7 +40,7 @@ const items: MenuItem[] = [
     getItem(<Link to="/admin/user/add">Add</Link>, '4'),
   ]),
   getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
+
   getItem(<Link to="/admin/product">Product</Link>, '10', <UnorderedListOutlined />,
     [
       getItem(<Link to="/admin/product">List</Link>, '11',),

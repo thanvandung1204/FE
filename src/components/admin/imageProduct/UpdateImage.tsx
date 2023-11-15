@@ -23,7 +23,7 @@ const UpdateimageProduct = () => {
       image: img,
     }
     try {
-      await (addImageProduct(data) as never)
+      await (UpdateImageProduct(data) as never)
       Message("success", "Thêm ảnh tin tức thành công")
       navigate('/admin/imageProduct')
     } catch (error) {

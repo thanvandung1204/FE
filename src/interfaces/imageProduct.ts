@@ -1,5 +1,5 @@
 export interface ImageProduct {
     _id: string | Number;
-    image: string,
+    image: Array<string>,
     trang_thai:  string,
 }
