@@ -177,19 +177,21 @@ const UpdateSize = () => {
             <Select.Option value="active">active</Select.Option>
           </Select>
         </Form.Item>
-                <Form.Item
-                    label="Image"
-                    name="image"
-                    rules={[{ required: true, message: 'Please input your image!' }]}
-                >
-                     <Select mode="multiple" style={{width: 200, height: 200}}  placeholder="Select a size" >
+                
+<Form.Item
+    label="Image"
+    name="image"
+    rules={[{ required: true, message: 'Please input your image!' }]}
+  
+>
+    <Select mode="multiple" style={{width: 200, height: 100}}  placeholder="Select a size" >
         {image?.data.map((images: ImageProduct) => (
             <Option key={images._id} value={images._id}>
-                <img src={images.image} alt="" width={100} />
+                <img src={images.image} alt="" style={{width: '100%', height: 'auto'}} />
             </Option>
         ))}
     </Select>
-                </Form.Item>
+</Form.Item>
                 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button  htmlType="submit">
