@@ -3,8 +3,8 @@ import { Button, Popconfirm } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
-import { useGetAllSalesQuery, useGetSaleByIdQuery, useRemoveSaleMutation } from "../../../api/sale/sale.api";
-import { ISale } from "../../../types";
+import { useGetAllSalesQuery, useGetSaleByIdQuery, useRemoveSaleMutation } from "../../api/sale/sale.api";
+import { ISale } from "../../types/index";
 import { toast } from "react-toastify";
 import FormSale from "./component/FormSale";
 

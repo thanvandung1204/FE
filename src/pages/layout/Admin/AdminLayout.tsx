@@ -81,6 +81,7 @@ const items: MenuItem[] = [
     getItem(<Link to="/admin/role">List</Link>, '34', ),
     getItem(<Link to="/admin/role/add">Add</Link>, '35'),
   ]),
+  getItem(<Link to="/admin/sale">Sale</Link>, '36', <TeamOutlined />, ),
 ];
 
 const AdminLayout: React.FC = () => {

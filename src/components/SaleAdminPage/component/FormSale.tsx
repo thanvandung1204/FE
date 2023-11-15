@@ -1,8 +1,8 @@
 import { Button, Col, Form, Input, InputNumber, Modal, Row } from "antd";
 import { useForm } from "antd/es/form/Form";
 import React, { useEffect } from "react";
-import { ISale } from "../../../../types";
-import { useNewSaleMutation, useUpdateSaleMutation } from "../../../../api/sale/sale.api";
+import { ISale } from "../../../types/index";
+import { useNewSaleMutation, useUpdateSaleMutation } from "../../../api/sale/sale.api";
 import { toast } from "react-toastify";
 
 type FormSaleProps = {
