@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 // import { MyComponent } from "./components";
-import { AdminLayout, ClientLayout } from "./pages/layout"
+import { AdminLayout, HomePages } from "./pages/layout"
 import Product from "./components/admin/Product/Product"
 import Order from "./components/admin/order/order"
 import AddProduct from "./components/admin/Product/AddProduct"
@@ -46,17 +46,49 @@ import AdminRoleEdit from "./components/admin/role/edit";
 import SaleAdminPage from "./components/SaleAdminPage";
 import PaymentAdmin from "./components/PaymentAdmin";
 import ProductDetail from "./components/admin/Product/ProductDetail";
+import BaseLayout from "./pages/layout/HomeLayout";
+import Contact from "./pages/layout/Users/Contact/Contact";
+import About from "./pages/layout/Users/About/About";
+import Blog from "./pages/layout/Users/Blog/Blog";
+import Blogtintuc from "./pages/layout/Users/Blog/Blogtintuc";
+import Shop_Products from "./pages/layout/Users/Shop-Products/Shop_Products";
+import Detail_Product from "./pages/layout/Users/Detail-Product/Detail_Product";
+
 
 
 
 export const routers = createBrowserRouter([
   {
     path: "/",
-    element: <ClientLayout />,
+    element: <BaseLayout  />,
     children: [
       {
-        // index: true,
-        // element: <MyComponent />,
+        path: "",
+        element: <HomePages />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/blog/:id",
+        element: <Blogtintuc />,
+      },
+      {
+        path: "/list-productsAll",
+        element: <Shop_Products />,
+      },
+       {
+        path: "/products/:id",
+        element: <Detail_Product />,
       },
     ],
   },
