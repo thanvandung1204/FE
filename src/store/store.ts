@@ -30,6 +30,7 @@ import informationApi, { informationReducer } from '@/api/information';
 import roleApi, { roleReducer } from '@/api/role';
 import customerApi, { customerReducer } from '@/api/customer';
 import userApi, { userReducer } from '@/api/user';
+import colorApi from '@/api/color';
 const persistConfig = {
     key: 'root',
     storage,
@@ -50,11 +51,13 @@ const rootReducer = combineReducers({
     [roleApi.reducerPath]: roleReducer,
     [saleApi.reducerPath]: saleApi.reducer,
     [paymentApi.reducerPath]: paymentApi.reducer,
+    [colorApi.reducerPath]: colorApi.reducer,
+    
 
 
     // [authApi.reducerPath]: authReducer
 })
-const middleware = [productApi.middleware, sizeApi.middleware, imageProductApi.middleware, imagetintucApi.middleware, tintucApi.middleware, commentsApi.middleware, categoryApi.middleware, contactApi.middleware, informationApi.middleware, userApi.middleware, customerApi.middleware, roleApi.middleware, paymentApi.middleware, saleApi.middleware]
+const middleware = [productApi.middleware, sizeApi.middleware, imageProductApi.middleware, imagetintucApi.middleware, tintucApi.middleware, commentsApi.middleware, categoryApi.middleware, contactApi.middleware, informationApi.middleware, userApi.middleware, customerApi.middleware, roleApi.middleware, paymentApi.middleware, saleApi.middleware, colorApi.middleware]
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
     reducer: persistedReducer,

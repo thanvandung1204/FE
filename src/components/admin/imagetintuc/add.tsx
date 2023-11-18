@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Iimagetintuc } from '../../../interfaces/imagetintuc';
 import { Itintuc } from '../../../interfaces/tintuc';
-import UpLoand from '../../Image/UploadImageTintuc';
+import UpLoand from '../../Image/ImageProduct';
 import { useAddImagetintucMutation } from '@/api/imagetintuc';
 import { useGetTintucQuery } from '@/api/tintuc';
 const ThemImageTinTuc = () => {

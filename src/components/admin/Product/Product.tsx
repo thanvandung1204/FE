@@ -4,6 +4,7 @@ import { DeleteTwoTone, EditOutlined } from '@ant-design/icons';
 import { useGetProductsQuery, useRemoveProductMutation } from '../../../api/product';
 import { IProduct } from '../../../interfaces/product';
 import { Link } from 'react-router-dom';
+import { ICategory } from '@/interfaces/category';
 
 type Props = {
     products: IProduct[];
@@ -37,6 +38,8 @@ const Product = (props: Props) => {
         image: product.image,
         price: product.price,
         description: product.description,
+        trang_thai: product.trang_thai,
+
 
     }));
 
@@ -47,6 +50,9 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+    render: (name: string, record: { key: number | string }) => (
+        <Link to={`${record.key}`}>{name}</Link>
+    ),
   },
   {
     title: 'Image',
@@ -64,10 +70,16 @@ const columns = [
     dataIndex: 'price',
     key: 'price',
   },
+
   {
     title: 'Description',
     dataIndex: 'description',
     key: 'description',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'trang_thai',
+    key: 'trang_thai',
   },
 
   {

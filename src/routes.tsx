@@ -45,6 +45,7 @@ import AdminRoleEdit from "./components/admin/role/edit";
 
 import SaleAdminPage from "./components/SaleAdminPage";
 import PaymentAdmin from "./components/PaymentAdmin";
+import ProductDetail from "./components/admin/Product/ProductDetail";
 
 
 
@@ -70,8 +71,14 @@ export const routers = createBrowserRouter([
       {
         path: "product/add",
         element: <AddProduct />,
+        
 
       },
+      {
+        path: "product/:id",
+        element: <ProductDetail />,
+      },
+
       {
         path: "product/update/:id",
         element: <UpdateProduct />,
