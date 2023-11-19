@@ -10,7 +10,16 @@ import { PiStarThin } from "react-icons/pi"
 import { AiOutlineEye } from "react-icons/ai"
 import Loading from "../../../../components/action/Loading/Loading"
 import Comment from "@/components/admin/comment/Comment"
+import { useGetCategorysQuery } from '../../../../api/category';
+import { ICategory } from '../../../../interfaces/category';
+import React, { useEffect } from 'react'
+
 const Shop_Products = () => {
+    //get du lieu cate
+    const { data: categoryData } = useGetCategorysQuery();
+    console.log(categoryData)
+
+
     return (
         <>
             <div className="box-container">
@@ -55,8 +64,14 @@ const Shop_Products = () => {
                                             title={
                                                 <div className="list-size-option">
                                                     <ul className="grid grid-cols-3  p-1">
+                                                        {categoryData?.data?.map((category: ICategory) => (
+                                                            <Link to={`/category/${category._id}`}>
+                                                                <li key={category._id} className="cursor-pointer flex items-center justify-center gap-1 bg-blue-gray-50  m-[1px] px-2 py-1 rounded-lg border-gray-300 border text-black">
+                                                                    {category.name}
+                                                                </li>
+                                                            </Link>
+                                                        ))}
 
-                                                        <li className="cursor-pointer flex items-center justify-center gap-1 bg-blue-gray-50  m-[1px] px-2  py-1 rounded-lg border-gray-300 border text-black">Category ở đây</li>
 
                                                     </ul>
                                                 </div>

@@ -8,21 +8,20 @@ import { useGetInformationsQuery, useRemoveInformationMutation } from '../../../
 
 const AdminInformation = () => {
     const { data: informationData, error, isLoading } = useGetInformationsQuery();
-    const [removeInformation, { isLoading: isRemoveLoading, isSuccess: isRemoveSuccess }] =
-        useRemoveInformationMutation();
+    const [removeInfor, { isLoading: isRemoveLoading, isSuccess: isRemoveSuccess }] = useRemoveInformationMutation();
 
     const confirm = (id: any) => {
-        useRemoveInformationMutation(id);
+        removeInfor(id);
     };
-    const dataSource = informationData?.data.map(({ _id, title, email, phone, image, logo, address, nameStore }: IInformation) => ({
-        key: _id,
-        title,
-        email,
-        phone,
-        image,
-        logo,
-        address,
-        nameStore
+    const dataSource = informationData?.data?.map((information: IInformation) => ({
+        key: information._id,
+        title: information.title,
+        email: information.email,
+        phone: information.phone,
+        image: information.image,
+        logo: information.logo,
+        address: information.address,
+        nameStore: information.nameStore,
     }));
     const columns = [
         {
@@ -44,7 +43,14 @@ const AdminInformation = () => {
             title: "Ảnh",
             dataIndex: "image",
             key: "image",
-            render: (url: string) => <img src={url} alt="" style={{ width: 50 }} />,
+            render: (images: string) => (
+                <img
+                  className="image"
+                  src={images[0]}
+                  alt="image of product"
+                  width={100}
+                />
+              ),
         },
         {
             title: "Logo",
@@ -94,11 +100,6 @@ const AdminInformation = () => {
         <div>
             <header className="mb-4 flex justify-between items-center">
                 <h2 className="font-bold text-2xl">Quản lý contact</h2>
-                <Button type='primary' danger className='bg-red-600'>
-                    <Link to="/admin/information/add" className="flex items-center space-x-2">
-                        Thêm
-                    </Link>
-                </Button>
             </header>
             {isRemoveSuccess && <Alert message="Xóa thành công" type="success" />}
             {isLoading ? <Skeleton /> : <Table dataSource={dataSource} columns={columns} />}

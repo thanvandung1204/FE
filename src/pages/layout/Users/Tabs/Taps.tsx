@@ -5,46 +5,48 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
-// import { RootState } from "../../../../store/store";
-// import { useEffect } from "react";
-// import Loading from "../ccction/Loading/Loading";
+import { useGetCategorysQuery } from '../../../../api/category';
+import { ICategory } from '../../../../interfaces/category';
+import React, { useEffect } from 'react'
+import { Link } from "react-router-dom";
+import SlickSlider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default function CustomTabs() {
-  // const dispatch = useDispatch();
-  // const dataCategorys = useSelector((state: RootState) => state.categorys);
-  // const { categorys, isLoading, error, category } = dataCategorys;
-  // useEffect(() => {
-  //   dispatch(getCategorys() as never);
-  // }, [dispatch]);
-  // useEffect(() => {
+  const { data: categoryData } = useGetCategorysQuery();
+  // console.log(categoryData)
 
-  //   if (categorys && categorys.length > 0) {
-  //     const firstCategoryId = categorys[0]._id;
-  //     dispatch(getOneCategory(firstCategoryId!) as never);
-  //   }
-  // }, [categorys, dispatch]);
-  // const handleTabChange = (id: string) => {
-  //   dispatch(getOneCategory(id) as never);
-  // };
+  const slickSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
 
   return (
     <Tabs value={"Women"}>
       <TabsHeader className="w-3/5 mx-auto">
-        <Tab>
-          Cate Name
-        </Tab>
-        <Tab>
-          Cate Name
-        </Tab>
-        <Tab>
-          Cate Name
-        </Tab>
+        {categoryData?.data?.map((category: ICategory) => (
+          <Tab key={category._id}>
+            <Link to={`/category/${category._id}`}>
+              <img alt="" src={category.image} className="w-[400px] h-[200px]" />
+            </Link>
+          </Tab>
+        ))}
       </TabsHeader>
       <TabsBody>
-        <TabPanel className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-4 px-4 mt-5">
+        <TabPanel className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-4 mt-5">
+          <SlickSlider {...slickSettings}>
+            {categoryData?.data?.map((category: ICategory) => (
+              <div key={category._id}>
+                <img alt="" src={category.image} className="w-full h-auto" />
+              </div>
+            ))}
+          </SlickSlider>
         </TabPanel>
       </TabsBody>
-
     </Tabs>
   )
 }
