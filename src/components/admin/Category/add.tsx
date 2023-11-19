@@ -1,17 +1,47 @@
 import { useAddCategoryMutation } from "../../../api/category"
 import { ICategory } from '../../../interfaces/category';
-import { Form, Button, Input, Select } from "antd";
+import { Form, Button, Input, Select, Upload } from "antd";
 import { useNavigate } from "react-router-dom";
 import LoadingOutlined from "@ant-design/icons"
-
+import React, { useState } from 'react';
+import axios from 'axios';
 type FieldType = {
     name: string;
     desciption: string;
+    image: any
 };
 const CategoryAdd = () => {
     const [addCategory, { isLoading }] = useAddCategoryMutation();
     const navigate = useNavigate();
+    const [fileList, setFileList] = useState<any[]>([]);
+
+    const SubmitImage = async () => {
+        const uploadPromises = fileList.map(async (file) => {
+            const data = new FormData();
+            const cloud_name = "drquzvhxt";
+            const upload_preset = "datn-upload";
+            data.append("file", file.originFileObj);
+            data.append("upload_preset", upload_preset);
+            data.append("cloud_name", cloud_name);
+            data.append("folder", "datn");
+
+            const takeData = await axios
+                .post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, data)
+                .then((data: any) => data);
+
+            return takeData.data.secure_url;
+        });
+
+        return Promise.all(uploadPromises);
+    };
+
+    const onFileChange = ({ fileList }: any) => {
+        setFileList(fileList);
+    };
+
     const onFinish = async (values: ICategory) => {
+        const fileUrls = await SubmitImage();
+        values.image = fileUrls;
         console.log("Form Values:", values);
 
         await addCategory(values)
@@ -22,6 +52,8 @@ const CategoryAdd = () => {
 
             });
     };
+
+
 
     return (
         <div>
@@ -51,24 +83,31 @@ const CategoryAdd = () => {
                 <Form.Item<FieldType> label="Mô tả" name="desciption"
                     rules={[
                         { required: true, message: "Vui lòng nhập mô tả !" },
-                        { min: 10, message: "Sản phẩm ít nhất 10 ký tự" },
+                        { min: 3, message: "Sản phẩm ít nhất 3 ký tự" },
                     ]}
                     hasFeedback
                 >
                     <Input />
                 </Form.Item>
 
-                {/* <Form.Item<FieldType> label="Trạng thái" name="status">
-                    <Select
-                        defaultValue="Trạng thái"
-                        style={{ width: 120 }}
-                        onChange={handleChange}
-                        options={[
-                            { value: 'active', label: 'Active' },
-                            { value: 'deactive', label: 'Deactive' },
-                        ]}
-                    />
-                </Form.Item> */}
+                <Form.Item<FieldType>
+                    label="Ảnh"
+                    name="image"
+                    rules={[
+                        { required: true, message: "Vui lòng chọn ảnh !" },
+                    ]}
+                    hasFeedback
+                >
+                    <Upload
+                        customRequest={() => { }}
+                        onChange={onFileChange}
+                        fileList={fileList}
+                        listType="picture"
+                        beforeUpload={() => false}
+                    >
+                        <Button >Chọn ảnh</Button>
+                    </Upload>
+                </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" danger htmlType="submit">

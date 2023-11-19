@@ -14,10 +14,12 @@ const AdminCategory = () => {
     const confirm = (id: any) => {
         removeCategory(id);
     };
-    const dataSource = categorytData?.data.map(({ _id, name, desciption }: ICategory) => ({
+    const dataSource = categorytData?.data.map(({ _id, name, desciption, image }: ICategory) => ({
         key: _id,
         name,
-        desciption
+        desciption,
+        image
+        
     }));
     const columns = [
         {
@@ -29,6 +31,20 @@ const AdminCategory = () => {
             title: "Mô tả",
             dataIndex: "desciption",
             key: "desciption",
+        },
+        {
+            title: "Anh",
+            dataIndex: "image",
+            key: "image",
+            render: (images: string) => (
+                <img
+                  className="image"
+                  src={images[0]}
+                  alt="image of product"
+                  width={100}
+                />
+              ),
+
         },
         {
             title: "",
@@ -62,11 +78,7 @@ const AdminCategory = () => {
         <div>
             <header className="mb-4 flex justify-between items-center">
                 <h2 className="font-bold text-2xl">Quản lý danh mục</h2>
-                <Button type='primary' danger className='bg-red-600'>
-                    <Link to="/admin/category/add" className="flex items-center space-x-2">
-                        Thêm
-                    </Link>
-                </Button>
+
             </header>
             {isRemoveSuccess && <Alert message="Xóa thành công" type="success" />}
             {isLoading ? <Skeleton /> : <Table dataSource={dataSource} columns={columns} />}

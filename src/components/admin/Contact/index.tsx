@@ -8,24 +8,23 @@ import { useGetContactsQuery, useRemoveContactMutation } from '../../../api/cont
 
 const AdminContact = () => {
     const { data: contactData, error, isLoading } = useGetContactsQuery();
-    console.log(contactData);
-    
-    const [removeContact, { isLoading: isRemoveLoading, isSuccess: isRemoveSuccess }] =
-        useRemoveContactMutation();
+    const [removeContact, { isLoading: isRemoveLoading, isSuccess: isRemoveSuccess }] = useRemoveContactMutation();
 
     const confirm = (id: any) => {
         removeContact(id);
     };
-    const dataSource = contactData?.data.map(({ _id, firstName, email, phone, content }: IContact) => ({
-        key: _id,
-        firstName,
-        email,
-        phone,
-        content
+    const dataSource = contactData?.data?.map((contact: IContact) => ({
+        key: contact._id,
+        firstName: contact.firstName,
+        email: contact.email,
+        phone: contact.phone,
+        content: contact.content,
     }));
+    console.log(contactData)
+
     const columns = [
         {
-            title: "Tên sản phẩm",
+            title: "Tên",
             dataIndex: "firstName",
             key: "firstName",
         },
@@ -40,7 +39,7 @@ const AdminContact = () => {
             key: "phone",
         },
         {
-            title: "Content",
+            title: "Nội dung",
             dataIndex: "content",
             key: "content",
         },
@@ -76,11 +75,6 @@ const AdminContact = () => {
         <div>
             <header className="mb-4 flex justify-between items-center">
                 <h2 className="font-bold text-2xl">Quản lý contact</h2>
-                <Button type='primary' danger className='bg-red-600'>
-                    <Link to="/admin/contact/add" className="flex items-center space-x-2">
-                        Thêm
-                    </Link>
-                </Button>
             </header>
             {isRemoveSuccess && <Alert message="Xóa thành công" type="success" />}
             {isLoading ? <Skeleton /> : <Table dataSource={dataSource} columns={columns} />}
