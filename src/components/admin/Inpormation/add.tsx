@@ -3,9 +3,9 @@ import { IInformation } from '../../../interfaces/information';
 import { Form, Button, Input, Upload, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import LoadingOutlined, { UploadOutlined, PlusOutlined } from "@ant-design/icons"
-import type { UploadProps } from 'antd';
-import axios from "axios";
-import { useState } from "react";
+import React, { useState } from 'react';
+import axios from 'axios';
+
 
 
 type FieldType = {
@@ -24,24 +24,37 @@ const InformationAdd = () => {
     const [addInformation, { isLoading }] = useAddInformationMutation();
     const navigate = useNavigate();
     const [form] = Form.useForm();
-    // const [images, setImages] = useState("")
+    const [fileList, setFileList] = useState<any[]>([]);
 
-    // const SubmitImage = async () => {
+    const SubmitImage = async () => {
+        const uploadPromises = fileList.map(async (file) => {
+            const data = new FormData();
+            const cloud_name = "drquzvhxt";
+            const upload_preset = "datn-upload";
+            data.append("file", file.originFileObj);
+            data.append("upload_preset", upload_preset);
+            data.append("cloud_name", cloud_name);
+            data.append("folder", "datn");
 
-    //     const data = new FormData();
-    //     const cloud_name = "drquzvhxt";
-    //     const upload_preset = "datn-upload";
-    //     data.append("file", images);
-    //     data.append("upload_preset", upload_preset);
-    //     data.append("cloud_name", cloud_name);
-    //     data.append("folder", "portfolio");
-    //     const takeData = await axios
-    //       .post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, data)
-    //       .then((data: any) => data);
-    //     return takeData.data.secure_url;
-    //   };
+            const takeData = await axios
+                .post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, data)
+                .then((data: any) => data);
+
+            return takeData.data.secure_url;
+        });
+
+        return Promise.all(uploadPromises);
+    };
+
+    const onFileChange = ({ fileList }: any) => {
+        setFileList(fileList);
+    };  
+
 
     const onFinish = async (values: IInformation) => {
+        const fileUrls = await SubmitImage();
+        values.image = fileUrls;
+        console.log("Form Values:", values);
         console.log("Form Values:", values);
 
         await addInformation(values)
@@ -104,21 +117,38 @@ const InformationAdd = () => {
                     label="Ảnh"
                     name="image"
                     rules={[
-                        { required: true, message: "Vui lòng nhập link ảnh !" },
+                        { required: true, message: "Vui lòng nhập chọn ảnh !" },
                     ]}
                     hasFeedback
                 >
-                    <Input />
+                    <Upload
+                        customRequest={() => { }}
+                        onChange={onFileChange}
+                        fileList={fileList}
+                        listType="picture"
+                        beforeUpload={() => false}
+                    >
+                        <Button >Chọn ảnh</Button>
+                    </Upload>
                 </Form.Item>
 
                 <Form.Item<FieldType>
                     label="Logo"
                     name="logo"
                     rules={[
-                        { required: true, message: "Vui lòng nhập link ảnh !" },
+                        { required: true, message: "Vui lòng chọn ảnh !" },
                     ]}
                     hasFeedback
                 >
+                    {/* <Upload
+                        customRequest={() => { }}
+                        onChange={onFileChange}
+                        fileList={fileList}
+                        listType="picture"
+                        beforeUpload={() => false}
+                    >
+                        <Button >Chọn Logo</Button>
+                    </Upload> */}
                     <Input />
                 </Form.Item>
 
