@@ -46,7 +46,7 @@ const AddProduct: React.FC = () => {
         const product= {
             name: products.name,
             price: products.price,
-            image: products.image,
+            image: img,
             description: products.description,
             quantity: 10,
             sale: products.sale,
@@ -183,7 +183,7 @@ const AddProduct: React.FC = () => {
                 <Form.Item
                     label="Image"
                     name="image"
-                    rules={[{ required: true, message: 'Please input your Image Product!' }]}
+                    // rules={[{ required: true, message: 'Please input your Image Product!' }]}
                 >
                   <UpLoand onImageUpLoad={handleImage} onImageRemove={handleImageRemove} />
                 </Form.Item>

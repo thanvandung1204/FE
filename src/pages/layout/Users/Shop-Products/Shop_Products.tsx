@@ -10,10 +10,17 @@ import { PiStarThin } from "react-icons/pi"
 import { AiOutlineEye } from "react-icons/ai"
 import Loading from "../../../../components/action/Loading/Loading"
 import Comment from "@/components/admin/comment/Comment"
+import { useGetProductsQuery } from "@/api/product"
+import { IProduct } from "@/interfaces/product"
 const Shop_Products = () => {
+    const { data: productData } = useGetProductsQuery();
+    console.log(productData);
+    
     return (
         <>
-            <div className="box-container">
+            <div className="box-container" 
+            >
+                
                 <div className="box-content mt-10">
                     <div className="big-content w-full px-2 md:w-11/12  mx-auto">
                         {/* menu */}
@@ -36,10 +43,13 @@ const Shop_Products = () => {
                                 <h1 className="text-new-products uppercase text-4xl font-black text-white">Hot Sale</h1>
                                 <div className="list-new-products hot-sale-scroll p-2 overflow-x-auto  ">
                                     <div className="content-list-new-products w-max flex gap-2 ">
+                                        
                                         <div className="content-list-new-products   grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"> {/* Đặt kích thước cho nội dung bên trong */}
-                                            <div className="w-full"> <Item /> </div>
-                                            <div className="w-full"> <Item /> </div>
-                                            <div className="w-full"> <Item /> </div>
+                                        {productData?.products.map((product: IProduct, index: any) => (
+                                            <div className="w-full"> 
+                                              <Item product={product} key={index} />
+                                       </div>
+                                         ))}                                   
                                         </div>
                                     </div>
                                 </div>
@@ -47,6 +57,7 @@ const Shop_Products = () => {
                         </div>
                         {/* list */}
                         <div className="list_AllProducts ">
+                            
                             <div className="content-list-sort">
                                 <div className="sort-products-list">
                                     <h1 className="font-semibold text-lg text-[#4a4a4a]  my-3">Select by criteria</h1>
@@ -63,7 +74,9 @@ const Shop_Products = () => {
                                             }
                                         >
                                             <div className={`btn-sort-option cursor-pointer flex items-center gap-1  px-3 py-2 rounded-lg  border   `}>
-                                                <button className="font-light text-sm">Categorys</button>
+                                                <button className="font-light text-sm">
+                                                    category
+                                                </button>
                                                 <i><IoIosArrowDropdown /></i>
                                             </div>
                                         </Tooltip>
@@ -106,6 +119,7 @@ const Shop_Products = () => {
                                         </Tooltip>
                                     </div>
                                     <h1 className="font-semibold text-lg text-[#4a4a4a] my-3">Sorted by</h1>
+                                    
                                     <div className="sorted-by flex flex-wrap gap-3 cursor-pointer overflow-x-auto">
 
                                         <div className="list-sorted-by flex flex-col md:flex-row gap-2   px-3 py-2 rounded-lg border ">
@@ -156,9 +170,9 @@ const Shop_Products = () => {
                             </div>
                             <div className="list-products-item mt-10">
                                 <div className="content-list-new-products   grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                    <div className="w-full"><Item /> </div>
-                                    <div className="w-full"> <Item /> </div>  <div className="w-full"> <Item /> </div>  <div className="w-full"> <Item /> </div>
-                                </div>
+                                {productData?.products.map((product: IProduct, index: any) => (
+                                            <div className="w-full">  <Item product={product} key={index} /></div> ))} 
+                                             </div>
                             </div>
                             <div className="text-viewMore w-full flex justify-center my-10">
                                 <button className="text-sm text-gray-700 py-2 px-20 rounded-xl view-more-shadow" >
@@ -169,6 +183,7 @@ const Shop_Products = () => {
 
                     </div>
                 </div>
+                
             </div >
         </>
     )

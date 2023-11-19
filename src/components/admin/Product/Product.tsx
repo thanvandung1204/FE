@@ -5,6 +5,7 @@ import { useGetProductsQuery, useRemoveProductMutation } from '../../../api/prod
 import { IProduct } from '../../../interfaces/product';
 import { Link } from 'react-router-dom';
 import { ICategory } from '@/interfaces/category';
+import ImagePriview from '../../Image/ImagePriview';
 
 type Props = {
     products: IProduct[];
@@ -42,6 +43,8 @@ const Product = (props: Props) => {
 
 
     }));
+    console.log(dataSource);
+    
 
 
 
@@ -58,11 +61,20 @@ const columns = [
     title: 'Image',
     dataIndex: 'image',
     key: 'image',
-    render: (image: any) =>{
-        return( image.map((item : any,index : number ) => {
-            return <img src={item.image} alt="" width={100}/>;
-        }))  
-      },
+    render:(image: Array<string>) => {
+        return (
+            <td className="whitespace-nowrap  text-gray-700 py-4 ">
+            <div className="items-center ">
+                <p className="text-xs lg:text-base md:text-xl flex ">
+                   <ImagePriview width={20} listImage={image} />
+                </p>
+            </div>
+        </td>
+            
+        );
+    }
+         
+      ,
   },
   
   {

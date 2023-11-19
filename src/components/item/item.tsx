@@ -8,7 +8,9 @@ import { AiTwotoneHeart } from "react-icons/ai";
 import { IProduct } from "../../interfaces/product";
 // import FormatterPrice from "../FormatterPrice/FormatterPrice";
 import { useState } from "react";
-type Props = {
+import { useGetProductsQuery } from "@/api/product";
+import ImagePriview from '../Image/ImagePriview';
+type Props = { 
     buttonAdd?: string;
     product?:IProduct;
     icon?: string;
@@ -16,6 +18,8 @@ type Props = {
 }
 
 const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
+    const { data: productData } = useGetProductsQuery();
+
     const [imageHover, setImage] = useState(product?.image[0]);
     const handleClickThumbnail = (image: string) => {
         setImage(image);
@@ -27,12 +31,15 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
     return (<>
         <div className="w-full md:w-64 m-auto content shadow-2xl rounded-lg overflow-hidden">
             <div className="w-full">
+           
                 <div className="w-full relative overflow-hidden ">
-                    <img
-                        src="https://swagger.com.vn/wp-content/uploads/2022/08/lv-trainer-sneaker-black-and-white-1.jpg"
-                        alt="Leather Pegged Pants"
-                        className="w-full transition duration-700 ease-in-out object-cover  max-h-[200px]   md:max-h-[250px] min-h-[320px]  md:min-h-[280px] "
-                    />
+                <td className="whitespace-nowrap  text-gray-700 ">
+            <div className="items-center ">
+                
+                   <ImagePriview width={80} listImage={product?.image} />
+            
+            </div>
+        </td>
                     <div className="prd-sale absolute top-2 left-1 min-w-[60px]">
                         <div className="py-[2px] mb-1 bg-pink-600">
                             <span className=" m-1 block  rounded-full text-center text-sm font-medium text-white">
@@ -98,7 +105,7 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                             </div>
                             <h2 className="prd-title text-center mt-1 cursor-pointer min-h-[80px] flex items-center justify-center">
                                 <span className="text-[#282828] font-medium text-base hover:text-[#17c6aa] ">
-                                    Tên sản Phẩm
+                                     {product?.name}
                                 </span>
                             </h2>
                             <div className="prd-description hidden">
@@ -108,11 +115,11 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                             </div>
                             <h2 className=" price  flex justify-center gap-5 text-center mt-1 cursor-pointer">
                                 <div className="flex gap-2">
-                                    <span className="text-[#666565]  text-base line-through  ">
-                                        giá tiền
+                                    <span className="text-[#110606]   text-base line-through  ">
+                                          {product?.price} 
                                     </span>
-                                    <span className="text-[#282828] font-medium text-base">
-                                        giá sau sale
+                                    <span className="text-[#d34949] text-2xl  font-semibold   text-base">
+                                        {product?.price}
                                     </span>
                                 </div>
                             </h2>
@@ -125,8 +132,11 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                             </div>
                         </div>
                     </div>
+
                 </div>
+           
             </div>
+             
         </div>
     </>
 
