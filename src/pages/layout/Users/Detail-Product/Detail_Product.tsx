@@ -56,7 +56,7 @@ const Detail_Product = () => {
                     <div className="slider-text-content min-w-full  flex flex-col gap-5 mt-8 md:mt-10 md:flex-row justify-between  ">
                         {/* slider */}
                         <div className="slider w-full md:w-2/5 relative overflow-hidden ">
-                        <img src="https://swagger.com.vn/wp-content/uploads/2022/08/lv-trainer-sneaker-black-and-white-1.jpg"></img>
+                        <img src={product?.product.image}></img>
                             <i className="text-3xl text-black icon-arrow-left">
                                 <FiArrowLeftCircle />
                             </i>
