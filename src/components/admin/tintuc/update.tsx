@@ -1,6 +1,7 @@
 import { Itintuc } from "@/interfaces/tintuc";
 import { useGetTintucByIdQuery, useUpdateTintucMutation } from "../../../api/tintuc"
 import { Button, Form, Input, Skeleton, Select, notification } from "antd";
+import UpLoand from '../../Image/UploadImageTintuc';
 import { useEffect } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,7 +10,7 @@ type FieldType = {
   tieude: string;
   noidung: string;
   trang_thai: string;
-
+  image: Array<string>;
 };
 const SuaTinTuc = () => {
   const { id } = useParams<{ id: string }>();

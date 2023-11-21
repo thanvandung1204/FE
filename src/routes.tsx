@@ -20,8 +20,6 @@ import ThemTinTuc from "./components/admin/tintuc/add";
 import DanhSachTinTuc from "./components/admin/tintuc/list";
 import SuaTinTuc from "./components/admin/tintuc/update";
 import UpdateImage from "./components/admin/imageProduct/UpdateImage";
-
-
 import AdminCategory from "./components/admin/Category";
 import CategoryAdd from "./components/admin/Category/add";
 import CategoryEdit from "./components/admin/Category/edit";
@@ -53,6 +51,8 @@ import Blog from "./pages/layout/Users/Blog/Blog";
 import Blogtintuc from "./pages/layout/Users/Blog/Blogtintuc";
 import Shop_Products from "./pages/layout/Users/Shop-Products/Shop_Products";
 import Detail_Product from "./pages/layout/Users/Detail-Product/Detail_Product";
+import Cart from "./pages/layout/Users/Cart/cart";
+import Orderr from "./pages/layout/Users/order/Order";
 
 
 
@@ -89,6 +89,15 @@ export const routers = createBrowserRouter([
        {
         path: "/products/:id",
         element: <Detail_Product />,
+      },
+     
+      {
+        path: "/cart",
+        element: < Cart />,
+      },
+      {
+        path: "/orderr",
+        element: <Orderr/>,
       },
     ],
   },
