@@ -28,19 +28,17 @@ const Header = () => {
     const onSubmitSearch = (e: any) => {
         e.preventDefault()
         if (valueSearch.length > 0) {
-
             navigate(`/result?search=${valueSearch}`)
-            // history.replaceState(null, '', `/result?search=${valueSearch}`)
-            // loại cỏ focus
             inputRef.current.blur();
             setOpen(false)
         }
     }
     return (
         <>
-            <div className="Header fixed z-50 shadow-2xl">
-                <header className="min-h-[84px] bg-gray-100 w-screen">
-                    <div className="content-header min-h-[84px] py-2 flex flex-col md:flex-row items-center justify-evenly">
+            <div className="Header fixed z-40 shadow-2xl pt-1">
+                <header className="min-h-[100px] bg-gray-100 w-screen">
+                    <div className="content-header min-h-[100px] py-2 flex flex-col md:flex-row items-center justify-evenly">
+                        <div className="w-20 h-20 "><img className="rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-wC0NR3IwcU_UCfQA4JhJU2gBDI1g3hf4BQ&usqp=CAU"></img></div>
                         <div className="navbar-menu-header hidden md:block">
                             <ul className="flex items-center justify-center">
                                 {listMenu.map((item, index) => (
@@ -51,7 +49,7 @@ const Header = () => {
                             </ul>
                         </div>
                         <div className="w-full md:w-80">
-                            <form onSubmit={onSubmitSearch} className={`search-header relative ml-auto  w-60 focus-within:w-80  h-10 border border-teal-700 bg-gray-300 group  flex items-center justify-around pl-2 rounded-3xl ${valueSearch.length > 0 ? "w-80" : ""}`}>
+                            <form onSubmit={onSubmitSearch} className={`search-header relative ml-auto  w-50 focus-within:w-80  h-10 border border-teal-700 bg-gray-300 group  flex items-center justify-around pl-2 rounded-3xl ${valueSearch.length > 0 ? "w-80" : ""}`}>
                                 <input className="inp-search w-5/6 text-sm  caret-teal-400  h-6 outline-none bg-gray-300   pl-2 pr-7" type="text" name="" id="" placeholder="Search..." ref={inputRef} value={valueSearch}
                                     onChange={(e) => setValueSearch(e.target.value)}
                                     onFocus={() => setOpen(true)} /> {
