@@ -10,15 +10,23 @@ import { IProduct } from "../../interfaces/product";
 import { useState } from "react";
 import { useGetProductsQuery } from "@/api/product";
 import ImagePriview from '../Image/ImagePriview';
+import { useGetColorsQuery } from "@/api/color";
+import { IColor } from "@/interfaces/color";
+import { Option } from "antd/lib/mentions";
 type Props = { 
     buttonAdd?: string;
     product?:IProduct;
     icon?: string;
     infoProduct?: boolean
 }
+interface ColorSize {
+    color: string;
+    sizes: string;
+    _id: string;
+  }
 
 const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
-    const { data: productData } = useGetProductsQuery();
+    const { data: color } = useGetColorsQuery();
 
     const [imageHover, setImage] = useState(product?.image[0]);
     const handleClickThumbnail = (image: string) => {
@@ -35,9 +43,9 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                 <div className="w-full relative overflow-hidden ">
                 <td className="whitespace-nowrap  text-gray-700 ">
             <div className="items-center ">
-                
-                   <ImagePriview width={80} listImage={product?.image} />
-            
+           
+                   <ImagePriview width={80} listImage={product?.image}  />
+            ,
             </div>
         </td>
                     <div className="prd-sale absolute top-2 left-1 min-w-[60px]">
@@ -77,7 +85,18 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                             <div className="list-color">
                                 <ul className="flex flex-col gap-3">
                                     <li>
-                                        <div>màu</div>
+                                    {
+                                        color?.color.map((color: IColor) => (
+                                            <div className="flex gap-2">
+                                                {/* <span className="text-[#110606]   text-base line-through  ">
+                                                    {color.name}
+                                                </span> */}
+                                                <span className="text-[#d34949] text-2xl  font-semibold   text-base">
+                                                    {color.name}
+                                                </span>
+                                            </div>
+                                        ))
+                                    }
                                     </li>
                                 </ul>
                             </div>
@@ -105,7 +124,9 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                             </div>
                             <h2 className="prd-title text-center mt-1 cursor-pointer min-h-[80px] flex items-center justify-center">
                                 <span className="text-[#282828] font-medium text-base hover:text-[#17c6aa] ">
+                                <Link to={`/products/${product?._id}`}> 
                                      {product?.name}
+                                     </Link>
                                 </span>
                             </h2>
                             <div className="prd-description hidden">

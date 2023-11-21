@@ -10,7 +10,13 @@ import Comment from "../../../../components/admin/comment/Comment";
 import { Image as AntdImage, Tooltip } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useGetProductByIdQuery } from "@/api/product";
 const Detail_Product = () => {
+    const { id } = useParams<{ id: string }>(); // Get the product id from the URL parameters
+    const { data: product, isLoading } = useGetProductByIdQuery(String(id));
+  
+    
+    if (isLoading) return <div>Loading...</div>;
 
     return (
         <>
@@ -29,7 +35,7 @@ const Detail_Product = () => {
                             <li className="underline underline-offset-4 hover:text-[#17c6aa] ">
                             </li>
                             <li>/</li>
-                            <li>tên</li>
+                            <li>pro</li>
                         </ul>
                     </div>
                     {/* name và rating */}
@@ -40,7 +46,7 @@ const Detail_Product = () => {
                         </div>
                         <div className="name-product mt-3">
                             <h1 className="title-name uppercase font-medium text-[#282828] text-2xl">
-                                tên san phẩm
+                                 {product?.product.name}
                             </h1>
                         </div>
                     </div>
@@ -63,7 +69,7 @@ const Detail_Product = () => {
 
                                 <div className=" py-[2px] bg-pink-600 my-1">
                                     <span className=" m-2 block  rounded-full text-center text-sm font-medium text-white">
-                                        20% SALE
+                                    {product?.product.sale}
                                     </span>
                                 </div>
 
@@ -80,9 +86,9 @@ const Detail_Product = () => {
                         <div className="text-content flex-1">
                             <div className="info-price flex flex-col md:flex-row gap-5 items-center">
                                 <>
-                                    <h1 className="text-3xl font-normal">tiền</h1>
+                                    <h1 className="text-3xl font-normal">{product?.product.price}</h1>
                                     <div className="price-old">
-                                        <h2 className="text-lg line-through">tiền</h2>
+                                        <h2 className="text-lg line-through">{product?.product.price}</h2>
                                         <p className="text-sm font-medium text-[#fb317d]">
                                             You Save: %
                                         </p>
@@ -122,17 +128,15 @@ const Detail_Product = () => {
                             {/* Options */}
                             <div className="options">
                                 {/* color */}
-                                <div className="color flex items-center gap-10">
-                                    <h2 className="text-lg font-medium">Color:</h2>
-                                    <ul className=" grid grid-cols-3 md:flex items-center gap-5">
-
-                                        <li  >
-
-                                            <div className="w-16 h-24 my-2 border cursor-pointer border-gray-400   rounded-md overflow-hidden">
-
-                                            </div>
-                                      
-
+                                                            <div className="color flex items-center gap-10">
+                                <h2 className="text-lg font-medium">Color:</h2>
+                                <ul className=" grid grid-cols-3 md:flex items-center gap-5">
+                                    <li>
+                                        <select name="color" id="color">
+                                            {product?.product.colorSizes.map((colorSize) => 
+                                                <option key={colorSize._id} value={colorSize.color}>{colorSize.color}</option>
+                                            )}
+                                        </select>
                                     </li>
                                 </ul>
                             </div>
@@ -140,15 +144,18 @@ const Detail_Product = () => {
                             <div className="size flex items-center gap-10 mt-5">
                                 <h2 className="text-lg font-medium">Size:</h2>
                                 <ul className="flex items-center gap-2">
-
-                                    <input type="text" name="" id="" />
-                                    <li className=
-                                        "rounded-md cursor-pointer  py-1 ">
+                                    <select name="size" id="size">
+                                        {product?.product.colorSizes.map((colorSize) => 
+                                            colorSize.sizes.map((sizeObj) => 
+                                                <option key={sizeObj._id} value={sizeObj.size}>{sizeObj.size}</option>
+                                            )
+                                        )}
+                                    </select>
+                                    <li className="rounded-md cursor-pointer  py-1 ">
                                         <span className="active-bg-size hover:bg-black px-1 py-2 hover:text-white  rounded-md">
                                             Size
                                         </span>
                                     </li>
-
                                 </ul>
                             </div>
                             {/* quantity by size */}
@@ -162,7 +169,7 @@ const Detail_Product = () => {
                                             <button className="btn-minus flex w-full px-2">-</button>
                                             <input
                                                 type="text"
-                                                className="w-12 text-center border-x-2" defaultValue={1} />
+                                                className="w-12 text-center border-x-2" defaultValue={ product?.product.quantity} />
                                             <button className="btn-plus px-2">+</button>
                                         </div>
                                         <span className="text-sm"> products are available </span>
@@ -221,7 +228,7 @@ const Detail_Product = () => {
                         </h1>
                         <div className="desc flex flex-col-reverse md:flex-row items-start gap-5">
                             <p className="mb-5 w-2/3 text-base leading-7 indent-8">
-                                dryer5ty4e5
+                            {product?.product.description}
                             </p>
                             <div className="list-images border-2 p-5 rounded-lg md:w-1/3 ">
                                 r6ty5r6ty5r675

@@ -15,74 +15,75 @@ import UpLoand from '../../Image/UploadImageTintuc';
 import { useGetAllSalesQuery } from '@/api/sale/sale.api';
 
 const { Option } = Select;
-const UpdateSize = () => {
-    const { id } = useParams<{ id: string }>();
+const UpdateProduct: React.FC = () => {
     const navigate = useNavigate();
-    const [UpdateProduct] = useUpdateProductMutation();
-    const { data, isLoading,refetch } = useGetProductByIdQuery(String(id));
+    const [updateProduct] = useUpdateProductMutation(); 
+    const { id } = useParams<{ id: string }>();
+    // Use the update mutation
+    const { data } = useGetProductByIdQuery(String(id)); // Fetch the existing product data
     const { data: size } = useGetSizesQuery();
-    const {data: sale} = useGetAllSalesQuery();
-    const {data: color} = useGetColorsQuery();
-    const {data : category} = useGetCategorysQuery()
-    console.log(data);
-    const [form] = Form.useForm();
-    const [ setEditedImg] = useState<any>([]);
-const [img, setImg] = useState<any>([]);
-const resetEditedImg = () => {
-  setEditedImg([]);
-};
-const handleImage = (url: string) => {
-  setImg([...img, url]);
-};
-const handleImageRemove = (url: string) => {
+    const { data: category } = useGetCategorysQuery();
+    const { data: color } = useGetColorsQuery();
+    const { data: sale } = useGetAllSalesQuery();
+    console.log(data?.product.image);
+    const [currentProductId, setCurrentProductId] = useState<string | null>(null)
+    
+    const [editedImg, setEditedImg] = useState<any>([]);
+  const [img, setImg] = useState<any>([]);
+  const resetEditedImg = () => {
+    setEditedImg([]);
+  };    
+  const handleImage = (url: string) => {
+    setImg([...img, url]);
+  };
+  const handleImageRemove = (url: string) => {
     setImg((prevImg: any) => prevImg.filter((imageUrl: string) => imageUrl !== url));
   };
+        
+      const { TextArea } = Input;
+
+    // Populate the form with the existing product data
+    const [form] = Form.useForm();
     useEffect(() => {
         form.setFieldsValue({
-            _id: data?._id,
-            name: data?.name,
-            price: data?.price,
-            image: data?.image,
-            sale: data?.sale,
-            colorSizes: 
-                data?.colorSizes.map((colorSize: any) => ({
-                    color: colorSize.color,
-                    size: colorSize.sizes.map((size: any) => size.size)
-                })),
-            category: data?.categoryId,
-            quanlity: data?.quanlity,
-            description: data?.description,
-            trang_thai: data?.trang_thai,
-        });
+            _id: data?.product._id,
+            name: data?.product.name,
+            price: data?.product.price,
+            image: data?.product.image,
+            description: data?.product.description,
+            quantity: data?.product.quantity,
+            sale: data?.product.sale,
+            categoryId: data?.product.categoryId,
+            trang_thai: data?.product.trang_thai,
+            colorSizes: data?.product.colorSizes?.map((colorSize: any) => ({
+                color: colorSize.color,
+                size: colorSize.sizes.map((size: any) => size.size)
+
+            }))
+        })
+
+        
+   
+    }, [ data ,form]);
+    useEffect(()=>{
+        setCurrentProductId(data?.product._id)
         return () => {
             resetEditedImg();
-        };
+          };
+    }
+    ,[data])
 
-     
-    }, [data, form]);
-    const { TextArea } = Input;
+
+ 
     const onFinish = async (values: any) => {
         try {
-            const UpdateProducts = await UpdateProduct({  ...values ,_id:id}).unwrap();
-            if (Array.isArray(values.categoryId)) {
-                values.categoryId = values.categoryId.join(',');
-            }
-            if (Array.isArray(values.sizeItem)) {
-                values.sizeItem = values.sizeItem.join(',');
-
-            }
-            
-            refetch();
-            
-           
-
-            navigate('/admin/product');
+            const updateProducts = await updateProduct({  ...values ,_id:id}).unwrap();
+            // navigate('/admin/product');
             notification.success({
                 message: 'Cập nhật thành công',
-                description: `The Size ${UpdateProducts.name} has been updated.`,
+                description: `The Size ${updateProducts.name} has been updated.`,
                 duration: 2,
             });
-            refetch();
         } catch (error) {
             console.error('Error updating Size:', error);
             notification.error({
@@ -93,14 +94,15 @@ const handleImageRemove = (url: string) => {
         }
     };
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+    // if (isLoading) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
         <div>
              <div>
              <Form
+                form={form}
                 name="basic"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
@@ -212,7 +214,9 @@ const handleImageRemove = (url: string) => {
                     name="image"
                     // rules={[{ required: true, message: 'Please input your Image Product!' }]}
                 >
-                  <UpLoand onImageUpLoad={handleImage} onImageRemove={handleImageRemove} />
+                   {editedImg && editedImg.length > 0 && (
+              <UpLoand onImageUpLoad={handleImage} onImageRemove={handleImageRemove} img={editedImg} />
+            )}
                 </Form.Item>
                 
                     <Form.Item label="Description" name="description">
@@ -233,4 +237,4 @@ const handleImageRemove = (url: string) => {
     );
 };
 
-export default UpdateSize;
+export default UpdateProduct;

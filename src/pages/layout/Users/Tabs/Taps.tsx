@@ -31,7 +31,7 @@ export default function CustomTabs() {
         {categoryData?.data?.map((category: ICategory) => (
           <Tab key={category._id}>
             <Link to={`/category/${category._id}`}>
-              <img alt="" src={category.image} className="w-[400px] h-[200px]" />
+              <img alt="" src={category.image} className="w-[350px] h-[200px]" />
             </Link>
           </Tab>
         ))}

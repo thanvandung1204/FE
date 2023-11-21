@@ -63,7 +63,7 @@ const AddProduct: React.FC = () => {
         addproduct(product as any);
         
 
-        // navigate('/admin/product');
+        navigate('/admin/product');
         notification.success({
             message: 'Success',
             description: 'Thêm sản phẩm thành công',

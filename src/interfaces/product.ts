@@ -6,7 +6,7 @@ export interface IProduct {
   image: Array<string>;
   colorSizes:  Array<string>;
   categoryId: string;  
-  quanlity : number;
+  quantity : number;
   description: string;
   trang_thai: string
 

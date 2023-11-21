@@ -18,6 +18,7 @@ import React, { useEffect } from 'react'
 const Shop_Products = () => {
     const { data: productData } = useGetProductsQuery();
     console.log(productData);
+    const { data: categoryData } = useGetCategorysQuery();
 
 
     return (
@@ -48,7 +49,7 @@ const Shop_Products = () => {
                                 <div className="list-new-products hot-sale-scroll p-2 overflow-x-auto  ">
                                     <div className="content-list-new-products w-max flex gap-2 ">
                                         
-                                        <div className="content-list-new-products   grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"> {/* Đặt kích thước cho nội dung bên trong */}
+                                        <div className="content-list-new-products   grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"> {/* Đặt kích thước cho nội dung bên trong */}
                                         {productData?.products.map((product: IProduct, index: any) => (
                                             <div className="w-full"> 
                                               <Item product={product} key={index} />
@@ -179,7 +180,7 @@ const Shop_Products = () => {
                                 </div>
                             </div>
                             <div className="list-products-item mt-10">
-                                <div className="content-list-new-products   grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                <div className="content-list-new-products   grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                                 {productData?.products.map((product: IProduct, index: any) => (
                                             <div className="w-full">  <Item product={product} key={index} /></div> ))} 
                                              </div>

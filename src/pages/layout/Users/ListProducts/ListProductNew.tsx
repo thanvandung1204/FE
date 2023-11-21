@@ -9,7 +9,7 @@ const ListProductNew = () => {
           
         <div className="content-list-new-products w-max flex gap-5  ">
     
-            <div className="content-list-new-products   grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 "> 
+            <div className="content-list-new-products   grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 "> 
             {productData?.products.map((product: IProduct, index: any) => (
            < div className="w-full">
     <Item product={product} key={index} />
