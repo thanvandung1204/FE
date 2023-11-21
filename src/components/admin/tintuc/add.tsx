@@ -1,14 +1,23 @@
 //add tintuc
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Itintuc } from '../../../interfaces/tintuc';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Message from '../../action/Message/Message'
 import { useAddTintucMutation } from '@/api/tintuc';
-import Loading from '../../action/Loading/Loading'
+import Loading from '../../action/Loading/Loading';
+import UpLoand from '../../Image/UploadImageTintuc';
 const ThemTinTuc = () => {
   const [addtintuc, { isLoading }] = useAddTintucMutation();
   const navigate = useNavigate()
   const { handleSubmit, register, formState: { errors }, watch } = useForm<any>()
+  const [img, setImg] = useState<any>([]);
+  const handleImage = (url: string) => {
+    setImg([...img, url]);
+  };
+  const handleImageRemove = (url: string) => {
+    setImg((prevImg: any) => prevImg.filter((imageUrl: string) => imageUrl !== url));
+  };
   const onSubmit: SubmitHandler<Itintuc> = async (inputAdd: Itintuc) => {
     try {
       await (addtintuc(inputAdd) as never)
@@ -55,6 +64,12 @@ const ThemTinTuc = () => {
                 {errors.trang_thai?.type === 'required' && <small className="form-text text-muted">Trường Name là bắt buộc</small>}
               </p>
             </div>
+            <div className='mb-2'>
+            <label className=" my-2" htmlFor="image">
+              Hình Ảnh
+            </label>
+            <UpLoand onImageUpLoad={handleImage} onImageRemove={handleImageRemove} />
+          </div>
 
           </div>
           <div >
