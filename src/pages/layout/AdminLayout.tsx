@@ -36,14 +36,11 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem(<Link to="/admin">Dashboard</Link>, '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
   getItem('User', 'sub1', <UserOutlined />, [
     getItem(<Link to="/admin/user">List</Link>, '3', ),
     getItem(<Link to="/admin/user/add">Add</Link>, '4'),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-
-  getItem(<Link to="/admin/product">Product</Link>, '10', <UnorderedListOutlined />,
+ getItem(<Link to="/admin/product">Product</Link>, '10', <UnorderedListOutlined />,
     [
       getItem(<Link to="/admin/product">List</Link>, '11',),
       getItem(<Link to="/admin/product/add">Add</Link>, '12'),

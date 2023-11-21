@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import Loading from '../../../../components/action/Loading/Loading'
 import { useGetTintucQuery } from '@/api/tintuc'
+import ImagePriview from '../../../../components/Image/ImagePriview'
 const Blog = () => {
     const { data: tintucData, error, isLoading } = useGetTintucQuery();
     return (<>
@@ -87,14 +88,10 @@ const Blog = () => {
                         {tintucData?.length ? (
                             tintucData.map((tintuc, index) => (
                                 <li key={index}>
-                                  <Link to={`/blog/${tintuc._id}`} >
-                                        <img
-                                            src="https://pos.nvncdn.net/f4d87e-8901/art/20190512_mah5T0JT0D3ffyTqHAWoVi33.jpg"
-                                            alt=""
-                                            className="w-full h-[200px] sm:h-[300px] object-cover transition duration-500 group-hover:scale-105"
-                                        />
+                                    <ImagePriview width={100} listImage={tintuc.image} />
+                                    <Link to={`/blog/${tintuc._id}`} >
+                                        <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">{tintuc.tieude}</h2>
                                     </Link>
-                                    <h2>{tintuc.tieude}</h2>
                                 </li>
                             ))
                         ) : (

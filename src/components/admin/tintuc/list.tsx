@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { useEffect } from "react";
 import Message from "../../action/Message/Message"
 import Loading from '../../action/Loading/Loading'
+import ImagePriview from '../../Image/ImagePriview'
 import { useGetTintucQuery, useRemoveTintucMutation } from '@/api/tintuc'
 const DanhSachTinTuc = () => {
     const { data: tintucData, error, isLoading } = useGetTintucQuery();
@@ -94,6 +95,13 @@ const DanhSachTinTuc = () => {
                                                     </p>
                                                 </div>
                                             </td>
+                                            <td className="whitespace-nowrap  text-gray-700 py-4 ">
+                                            <div className="items-center ">
+                                                <p className="text-xs lg:text-base md:text-xl flex ">
+                                                   <ImagePriview width={20} listImage={tintuc.image} />
+                                                </p>
+                                            </div>
+                                        </td>
                                             <td className="whitespace-nowrap ">
                                                 <div className="flex items-center">
                                                     <Link
@@ -106,7 +114,7 @@ const DanhSachTinTuc = () => {
                                                         <Popconfirm
                                                             placement="topRight"
                                                             title={`Delete the news "${tintuc.tieude}"?`}
-                                                            onConfirm={() => handleSoftDelete(tintuc._id!)}
+                                                            onConfirm={() => handleSoftDelete(tintuc._id)}
                                                             okText="Yes"
                                                             cancelText="No"
                                                             okButtonProps={{ style: { background: "red" } }}

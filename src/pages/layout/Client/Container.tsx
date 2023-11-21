@@ -22,7 +22,7 @@ const Container = (props: Props) => {
             <BannerCategory />
             <ListProducts />
             <BannerCaption />
-            <HeaderHomeInfo />
+            {/* <HeaderHomeInfo /> */}
         </div>
     )
 }

@@ -12,7 +12,7 @@ const tintucApi = createApi({
             query: () => `/tintuc`,
             providesTags: ['Tintuc']
         }),
-        getTintucById: builder.query<Itintuc, number | string>({
+        getTintucById: builder.query<any, number | string>({
             query: (id) => `/tintuc/${id}`,
             providesTags: ['Tintuc']
         }),
