@@ -1,3 +1,4 @@
+import { ISignin } from '@/interfaces/signin';
 import { IUser } from '@/interfaces/user';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
@@ -34,6 +35,39 @@ const userApi = createApi({
             }),
             invalidatesTags: ['User']
         }),
+        signinUser: builder.mutation<{
+            success: boolean;
+            accessToken: string;
+            user: {
+              _id: string;
+              role: {
+                _id: string;
+                role_name: string;
+              };
+            };
+          }, ISignin>({
+            query: (credentials) => ({
+              url: `/signin`,
+              method: "POST",
+              body: credentials,
+            }),
+            invalidatesTags: ['User']
+        }),
+        signout: builder.mutation<IUser, void>({
+            query: () => ({
+              url: "/signout",
+              method: "POST",
+            }),
+            invalidatesTags: ["User"],
+          }),
+        signupUser: builder.mutation<IUser, IUser>({
+            query: (user) => ({
+                url: `/signupUser`,
+                method: "POST",
+                body: user
+            }),
+            invalidatesTags: ['User']
+        }),
         updateUser: builder.mutation<any, any>({
             query: (user) => ({
                 url: `/user/${user._id}`,
@@ -46,7 +80,7 @@ const userApi = createApi({
 });
 
 export const {
-    useGetUserQuery, useGetUserByIdQuery, useAddUserMutation, useUpdateUserMutation, useRemoveUserMutation
+    useGetUserQuery, useGetUserByIdQuery, useAddUserMutation, useUpdateUserMutation, useRemoveUserMutation, useSigninUserMutation, useSignupUserMutation, useSignoutMutation
 } = userApi;
 export const userReducer = userApi.reducer;
 export default userApi;
