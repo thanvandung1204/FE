@@ -3,6 +3,9 @@ import { TiDelete } from "react-icons/ti";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { UserOutlined, SearchOutlined } from "@ant-design/icons"
+import { useGetInformationsQuery } from '../../../api/information';
+import { IInformation } from '../../../interfaces/information';
 import { UserOutlined, SearchOutlined } from "@ant-design/icons";
 import React from "react";
 import { DownOutlined } from "@ant-design/icons";
@@ -43,6 +46,11 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const inputRef = useRef(null as any);
   const [signOut, { isLoading }] = useSignoutMutation();
+    const { data: informationData } = useGetInformationsQuery();
+
+    const hanldClear = () => {
+        setValueSearch("")
+        inputRef.current.focus();
 
   const handleLogout = async () => {
     try {
@@ -71,11 +79,12 @@ const Header = () => {
         <header className="min-h-[100px] bg-gray-100 w-screen">
           <div className="content-header min-h-[100px] py-2 flex flex-col md:flex-row items-center justify-evenly">
             <div className="w-20 h-20 ">
-              <img
-                className="rounded-full"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-wC0NR3IwcU_UCfQA4JhJU2gBDI1g3hf4BQ&usqp=CAU"
-              ></img>
-            </div>
+                            <Link to={"/"}>
+                                {informationData?.data?.map((information: IInformation) => (
+                                    <img alt="" src={information.logo} className="rounded-full" />
+                                ))}
+                            </Link>
+                        </div>
             <div className="navbar-menu-header hidden md:block">
               <ul className="flex items-center justify-center">
                 {listMenu.map((item, index) => (
@@ -169,3 +178,4 @@ const Header = () => {
   );
 };
 export default Header;
+
