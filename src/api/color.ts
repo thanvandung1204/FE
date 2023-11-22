@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ISize } from "../interfaces/size";
-const sizeApi = createApi({
-  reducerPath: "size",
+const colorApi = createApi({
+  reducerPath: "color",
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API,
   }),
@@ -9,28 +9,29 @@ const sizeApi = createApi({
     // actions
     // GET
     getSizes: builder.query<any, void>({
-      query: () => `/size`,
+      query: () => `/color`,
     }),
     getSizeById: builder.query<ISize, number | string>({
-      query: (id) => `/size/${id}`,
+      query: (id) => `/color/${id}`,
     }),
     addSize: builder.mutation<ISize, ISize>({
       query: (size) => ({
-        url: `/size`,
+        url: `/color`,
         method: "POST",
         body: size,
       }),
+      
     }),
     updateSize: builder.mutation<ISize, ISize>({
       query: (size) => ({
-        url: `/size/${size.id}`,
+        url: `/color/${size.id}`,
         method: "PUT",
         body: { name: size.name, quantity: size.quantity },
       }),
     }),
     removeSize: builder.mutation<ISize, number | string>({
       query: (id) => ({
-        url: `/size/${id}`,
+        url: `/color/${id}`,
         method: "DELETE",
       }),
     }),
@@ -43,8 +44,8 @@ export const {
   useAddSizeMutation,
   useUpdateSizeMutation,
   useRemoveSizeMutation,
-} = sizeApi;
+} = colorApi;
 
-export const sizeReducer = sizeApi.reducer;
+export const colorReducer = colorApi.reducer;
 
-export default sizeApi;
+export default colorApi;

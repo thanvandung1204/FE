@@ -1,15 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 // import { MyComponent } from "./components";
-import { AdminLayout, ClientLayout } from "./pages/layout"
-import Product from "./components/admin/Product/Product"
-import Order from "./components/admin/order/order"
-import AddProduct from "./components/admin/Product/AddProduct"
-import Size from "./components/admin/size/size"
-import AddSize from "./components/admin/size/AddSize"
+import { AdminLayout, ClientLayout } from "./pages/layout";
+import Product from "./components/admin/Product/Product";
+
+import Order from "./components/admin/order/order";
+import AddProduct from "./components/admin/Product/AddProduct";
+import Size from "./components/admin/size/size";
+import AddSize from "./components/admin/size/AddSize";
+import UpdateSize from "./components/admin/size/UpdateSize";
+import Color from "./components/admin/color/color";
+import Addcolor from "./components/admin/color/Addcolor";
+import Updatecolor from "./components/admin/color/Updatecolor";
+
 import UpdateProduct from "./components/admin/Product/UpdateProduct";
 import RecycleBin from "./components/admin/Product/recycle-bin";
-import UpdateSize from "./components/admin/size/UpdateSize";
-import ImageProduct from "./components/admin/imageProduct/imageProduct"
+
+import ImageProduct from "./components/admin/imageProduct/imageProduct";
 import AddImage from "./components/admin/imageProduct/AddImage";
 import HomeAdmin from "./pages/layout/Admin/home_admin";
 import ListComment from "./components/admin/comment/list";
@@ -59,7 +65,6 @@ export const routers = createBrowserRouter([
       {
         path: "product/add",
         element: <AddProduct />,
-
       },
       {
         path: "product/update/:id",
@@ -80,6 +85,18 @@ export const routers = createBrowserRouter([
       {
         path: "size/update/:id",
         element: <UpdateSize />,
+      },
+      {
+        path: "color",
+        element: <Color />,
+      },
+      {
+        path: "color/add",
+        element: <Addcolor />,
+      },
+      {
+        path: "color/update/:id",
+        element: <Updatecolor />,
       },
       {
         path: "imageProduct",
@@ -163,45 +180,45 @@ export const routers = createBrowserRouter([
       },
       {
         path: "user",
-        element: <AdminUser/>,
+        element: <AdminUser />,
       },
       {
         path: "user/add",
-        element: <AdminUserAdd/>,
+        element: <AdminUserAdd />,
       },
       {
         path: "user/edit/:id",
-        element: <AdminEditUser/>,
+        element: <AdminEditUser />,
       },
       {
         path: "customer",
-        element: <AdminCustomer/>,
+        element: <AdminCustomer />,
       },
       {
         path: "customer/add",
-        element: <AdminCustomerAdd/>,
+        element: <AdminCustomerAdd />,
       },
       {
         path: "customer/edit/:id",
-        element: <AdminCustomerEdit/>,
+        element: <AdminCustomerEdit />,
       },
       {
         path: "role",
-        element: <AdminRole/>,
+        element: <AdminRole />,
       },
       {
         path: "role/add",
-        element: <AdminRoleAdd/>,
+        element: <AdminRoleAdd />,
       },
       {
         path: "role/edit/:id",
-        element: <AdminRoleEdit/>,
-      },
-      {
-        path: "order",
-        element: <Order/>,
+        element: <AdminRoleEdit />,
       },
 
+      {
+        path: "order",
+        element: <Order />,
+      },
     ],
   },
   {

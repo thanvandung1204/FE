@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState } from "react";
 import {
   DesktopOutlined,
   FileOutlined,
@@ -8,21 +8,21 @@ import {
   UnorderedListOutlined,
   DeleteOutlined,
   FileImageOutlined,
-   CommentOutlined,
-  ControlOutlined 
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import { Outlet, Link } from 'react-router-dom';
+  CommentOutlined,
+  ControlOutlined,
+} from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Outlet, Link } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>['items'][number];
+type MenuItem = Required<MenuProps>["items"][number];
 
 function getItem(
   label: React.ReactNode,
   key: React.Key,
   icon?: React.ReactNode,
-  children?: MenuItem[],
+  children?: MenuItem[]
 ): MenuItem {
   return {
     key,
@@ -33,54 +33,82 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem(<Link to="/admin">Dashboard</Link>, '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem(<Link to="/admin/user">List</Link>, '3', ),
-    getItem(<Link to="/admin/user/add">Add</Link>, '4'),
+  getItem(<Link to="/admin">Dashboard</Link>, "1", <PieChartOutlined />),
+  getItem("Option 2", "2", <DesktopOutlined />),
+  getItem("User", "sub1", <UserOutlined />, [
+    getItem(<Link to="/admin/user">List</Link>, "3"),
+    getItem(<Link to="/admin/user/add">Add</Link>, "4"),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
-  getItem(<Link to="/admin/product">Product</Link>, '10', <UnorderedListOutlined />,
+  getItem("Team", "sub2", <TeamOutlined />, [
+    getItem("Team 1", "6"),
+    getItem("Team 2", "8"),
+  ]),
+  getItem("Files", "9", <FileOutlined />),
+  getItem(
+    <Link to="/admin/product">Product</Link>,
+    "10",
+    <UnorderedListOutlined />,
     [
-      getItem(<Link to="/admin/product">List</Link>, '11',),
-      getItem(<Link to="/admin/product/add">Add</Link>, '12'),
-      getItem(<Link to="/admin/product/recycle"><DeleteOutlined /></Link>, '13'),
-
-    ]),
-  getItem(<Link to="/admin/size">Size</Link>, '14', <ControlOutlined />,
-    [
-      getItem(<Link to="/admin/size">List</Link>, '15',),
-      getItem(<Link to="/admin/size/add">Add</Link>, '16'),
-      getItem(<Link to="/admin/size/update/:id">update</Link>, '70')
-    ]),
-  getItem(<Link to="/admin/imageProduct">ImgProduct</Link>, '18', <FileImageOutlined/>,
-    [
-      getItem(<Link to="/admin/imageProduct">List</Link>, '19',),
-      getItem(<Link to="/admin/imageProduct/add">Add</Link>, '20'),
-      getItem(<Link to="/admin/imageProduct/update/:id">update</Link>, '21'),
-    ]),
-  getItem(<Link to="/admin/imagetintuc">Image Tin tức</Link>, '22', <FileImageOutlined />,
-    [
-      getItem(<Link to="/admin/imagetintuc/add">Thêm ảnh tin tức</Link>, '24'),
-    ]),
-  getItem(<Link to="/admin/tintuc">Tin tức</Link>, '25', <DesktopOutlined />,
-    [
-      getItem(<Link to="/admin/tintuc/add">Thêm tin tức</Link>, '27'),
-    ]),
-  getItem(<Link to="/admin/comments">Comment</Link>, '28', <CommentOutlined />,
+      getItem(<Link to="/admin/product">List</Link>, "11"),
+      getItem(<Link to="/admin/product/add">Add</Link>, "12"),
+      getItem(
+        <Link to="/admin/product/recycle">
+          <DeleteOutlined />
+        </Link>,
+        "13"
+      ),
+    ]
   ),
-  getItem(<Link to="/admin/category">Danh mục</Link>, '29', <DesktopOutlined />),
-  getItem(<Link to="/admin/contact">Contact</Link>, '30', <DesktopOutlined />),
-  getItem(<Link to="/admin/information">Thông tin</Link>, '31', <DesktopOutlined />),
-  getItem('Customer', 'sub3', <UserOutlined />, [
-    getItem(<Link to="/admin/customer">List</Link>, '32', ),
-    getItem(<Link to="/admin/customer/add">Add</Link>, '33'),
+  getItem(<Link to="/admin/size">Size</Link>, "14", <ControlOutlined />, [
+    getItem(<Link to="/admin/size">List</Link>, "15"),
+    getItem(<Link to="/admin/size/add">Add</Link>, "16"),
+    getItem(<Link to="/admin/size/update/:id">update</Link>, "70"),
   ]),
-  getItem('Role', 'sub4', <UnorderedListOutlined />, [
-    getItem(<Link to="/admin/role">List</Link>, '34', ),
-    getItem(<Link to="/admin/role/add">Add</Link>, '35'),
+  getItem(<Link to="/admin/color">color</Link>, "17", <ControlOutlined />, [
+    getItem(<Link to="/admin/color">List</Link>, "18"),
+    getItem(<Link to="/admin/color/add">Add</Link>, "19"),
+    getItem(<Link to="/admin/color/update/:id">update</Link>, "71"),
   ]),
+  getItem(
+    <Link to="/admin/imageProduct">ImgProduct</Link>,
+    "18",
+    <FileImageOutlined />,
+    [
+      getItem(<Link to="/admin/imageProduct">List</Link>, "20"),
+      getItem(<Link to="/admin/imageProduct/add">Add</Link>, "21"),
+      getItem(<Link to="/admin/imageProduct/update/:id">update</Link>, "22"),
+    ]
+  ),
+  getItem(
+    <Link to="/admin/imagetintuc">Image Tin tức</Link>,
+    "23",
+    <FileImageOutlined />,
+    [getItem(<Link to="/admin/imagetintuc/add">Thêm ảnh tin tức</Link>, "24")]
+  ),
+  getItem(<Link to="/admin/tintuc">Tin tức</Link>, "25", <DesktopOutlined />, [
+    getItem(<Link to="/admin/tintuc/add">Thêm tin tức</Link>, "27"),
+  ]),
+  getItem(<Link to="/admin/comments">Comment</Link>, "28", <CommentOutlined />),
+  getItem(
+    <Link to="/admin/category">Danh mục</Link>,
+    "29",
+    <DesktopOutlined />
+  ),
+  getItem(<Link to="/admin/contact">Contact</Link>, "30", <DesktopOutlined />),
+  getItem(
+    <Link to="/admin/information">Thông tin</Link>,
+    "31",
+    <DesktopOutlined />
+  ),
+  getItem("Customer", "sub3", <UserOutlined />, [
+    getItem(<Link to="/admin/customer">List</Link>, "32"),
+    getItem(<Link to="/admin/customer/add">Add</Link>, "33"),
+  ]),
+  getItem("Role", "sub4", <UnorderedListOutlined />, [
+    getItem(<Link to="/admin/role">List</Link>, "34"),
+    getItem(<Link to="/admin/role/add">Add</Link>, "35"),
+  ]),
+  getItem(<Link to="/admin/order">Order</Link>, "36", <DesktopOutlined />),
 ];
 
 const AdminLayout: React.FC = () => {
@@ -90,17 +118,29 @@ const AdminLayout: React.FC = () => {
   } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+          items={items}
+        />
       </Sider>
       <Layout>
         <header className="bg-gray-50">
           <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
             <div className="flex items-center sm:justify-between sm:gap-4">
               <div className="relative hidden sm:block">
-                <label className="sr-only" form="search"> Search </label>
+                <label className="sr-only" form="search">
+                  {" "}
+                  Search{" "}
+                </label>
 
                 <input
                   className="h-10 w-full rounded-lg border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
@@ -131,9 +171,7 @@ const AdminLayout: React.FC = () => {
                 </button>
               </div>
 
-              <div
-                className="flex flex-1 items-center justify-between gap-8 sm:justify-end"
-              >
+              <div className="flex flex-1 items-center justify-between gap-8 sm:justify-end">
                 <div className="flex gap-4">
                   <button
                     type="button"
@@ -170,9 +208,7 @@ const AdminLayout: React.FC = () => {
                       stroke-width="2"
                     >
                       <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                      <path
-                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                      />
+                      <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -215,7 +251,9 @@ const AdminLayout: React.FC = () => {
                   />
 
                   <p className="ms-2 hidden text-left text-xs sm:block">
-                    <strong className="block font-medium">Eric Frusciante</strong>
+                    <strong className="block font-medium">
+                      Eric Frusciante
+                    </strong>
 
                     <span className="text-gray-500"> eric@frusciante.com </span>
                   </p>
@@ -237,12 +275,20 @@ const AdminLayout: React.FC = () => {
             </div>
           </div>
         </header>
-        <Content style={{ margin: '0 16px' }}>
-          <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
+        <Content style={{ margin: "0 16px" }}>
+          <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+              background: colorBgContainer,
+            }}
+          >
             <Outlet />
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: "center" }}>
+          Ant Design ©2023 Created by Ant UED
+        </Footer>
       </Layout>
     </Layout>
   );
