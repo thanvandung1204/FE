@@ -6,6 +6,7 @@ export interface IUser {
     ngaysinh: Date; 
     email: string;
     password: string;
+    confirmPassword: string;
     role: string;
     trang_thai: "Active" | "Inactive";
     image_url: string; 
