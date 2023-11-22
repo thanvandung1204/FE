@@ -73,7 +73,7 @@ const AdminInformation = () => {
             render: ({ key: _id }: any) => {
                 return (
                     <>
-                        <div className="space-x-2">
+                        <div className="space-x-2 w-[100px]">
                             <Popconfirm
                                 title="Bạn có muốn xóa"
                                 onConfirm={() => confirm(_id)}
@@ -99,7 +99,7 @@ const AdminInformation = () => {
     return (
         <div>
             <header className="mb-4 flex justify-between items-center">
-                <h2 className="font-bold text-2xl">Quản lý contact</h2>
+                <h2 className="font-bold text-2xl">Quản lý thông tin</h2>
             </header>
             {isRemoveSuccess && <Alert message="Xóa thành công" type="success" />}
             {isLoading ? <Skeleton /> : <Table dataSource={dataSource} columns={columns} />}
