@@ -25,6 +25,7 @@ export default function CustomTabs() {
     }
   }, [categoryData, sliderInitialized]);
 
+
   return (
 
     <div value={"Women"}>
@@ -41,13 +42,10 @@ export default function CustomTabs() {
           {sliderInitialized &&
             categoryData?.data?.map((category: ICategory) => (
               <div key={category._id}>
-
                 <Link to={`/category/${category._id}`}>
                   <img alt="" src={category.image} className="w-[150px] h-[90px]" />
                 </Link>
-
               </div>
-
             ))}
         </Slider>
       </div>

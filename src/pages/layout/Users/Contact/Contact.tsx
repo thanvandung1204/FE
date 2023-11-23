@@ -25,12 +25,16 @@ const Contact = () => {
         }
     };
 
-    return (
-        <Form
+    return (<>
+    <div className="mt-10">
+    <Form
             name="basic"
             onFinish={onFinish}
             autoComplete="off"
+            className="mt-30"
+
         >
+            <div className="grid sm:grid-cols-1  lg:grid-cols-2 gap-10">
             <div className="flex justify-center items-center h-screen">
                 <div className="absolute inset-0 bg-gray-300">
                     <iframe
@@ -44,8 +48,8 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className="container py-24 mx-auto flex">
-                <div className="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
+            <div className="container  mx-100 ">
+                <div className="bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
                     <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">
                         Liên hệ
                     </h2>
@@ -115,7 +119,12 @@ const Contact = () => {
                     </Button>
                 </div>
             </div>
+            </div>
+            
         </Form>
+    </div>
+    </>
+       
     );
 };
 
