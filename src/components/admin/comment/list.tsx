@@ -42,7 +42,7 @@ const ListComment = () => {
                             <tr className="bg-gray-50">
                                 <th className="whitespace-nowrap py-4 font-medium text-gray-900 text-left px-5">
                                     <div className="flex items-center">
-                                        <div className="mr-2">Id Người dùng  </div>
+                                        <div className="mr-2"> Người dùng  </div>
                                     </div>
                                 </th>
                                 <th className="whitespace-nowrap py-4 font-medium text-gray-900 text-left px-5">
@@ -59,11 +59,6 @@ const ListComment = () => {
                                 </th>
                                 <th className="whitespace-nowrap py-4 font-medium text-gray-900 text-left px-5">
                                     <div className="flex items-center">
-                                        <div className="mr-2">Đánh Giá </div>
-                                    </div>
-                                </th>
-                                <th className="whitespace-nowrap py-4 font-medium text-gray-900 text-left px-5">
-                                    <div className="flex items-center">
                                         <div className="mr-2">Action </div>
                                     </div>
                                 </th>
@@ -75,7 +70,7 @@ const ListComment = () => {
                                     <tr key={index}>
                                         <td className="whitespace-nowrap font-medium text-gray-900 flex text-left my-5 mx-2 ">
                                             <div className="flex items-center">
-                                                <p className="text-xs lg:text-base md:text-xl  mx-1"> {comment.productId}</p>
+                                                <p className="text-xs lg:text-base md:text-xl  mx-1"> {comment.fullname}</p>
                                             </div>
                                         </td>
                                         <td className="whitespace-nowrap  text-gray-700 py-4 ">
@@ -89,13 +84,6 @@ const ListComment = () => {
                                             <div className="items-center">
                                                 <p className="text-xs lg:text-base md:text-xl mx-8">
                                                     {comment.content}
-                                                </p>
-                                            </div>
-                                        </td>
-                                        <td className="whitespace-nowrap  text-gray-700 py-4 ">
-                                            <div className="items-center">
-                                                <p className="text-xs lg:text-base md:text-xl mx-7">
-                                                    {comment.rating}<StarOutlined />
                                                 </p>
                                             </div>
                                         </td>
