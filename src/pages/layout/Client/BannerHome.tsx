@@ -4,8 +4,8 @@ import Slider from 'react-slick';
 const BannerHome = () => {
   const images = [
     'https://img.vietcetera.com/wp-content/uploads/2020/03/fe.jpg',
-    'https://img.vietcetera.com/wp-content/uploads/2020/03/fe.jpg',
-    'https://img.vietcetera.com/wp-content/uploads/2020/03/fe.jpg',
+    'https://www.craftlabs.sg/wp-content/uploads/2023/05/sneaker-banner-1-1.jpg',
+    'https://static.sneakerjagers.com/news/nl/2021/11/LandingPage_Banners_Sneaker-1440x416-1-1024x296.jpg',
   ];
 
   return (
@@ -19,7 +19,8 @@ const BannerHome = () => {
       autoplaySpeed={2000}
     >
       {images.map((image, index) => (
-        <div
+       <div>
+         <div
           key={index}
           className="relative bg-cover bg-center bg-no-repeat pt-20 pb-20"
           style={{ backgroundImage: `url('${image}')` }}
@@ -40,6 +41,7 @@ const BannerHome = () => {
             </div>
           </div>
         </div>
+       </div>
       ))}
     </Slider>
   );

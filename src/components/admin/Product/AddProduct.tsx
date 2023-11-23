@@ -86,7 +86,7 @@ const AddProduct: React.FC = () => {
                 <Col span={12}>
                 <Form.Item
                     label="Product Name"
-                    name="name"
+name="name"
                     rules={[{ required: true, message: 'Please input your Name Product!' }, { min: 5, message: 'Product Name must be at least 5 characters.' }]}
                 >
                     <Input />
@@ -148,7 +148,7 @@ const AddProduct: React.FC = () => {
                                                     {color.name}
                                                 </Option>
                                             ))}
-                                        </Select>
+</Select>
                                     </Form.Item>
                                     <Form.Item
                                         {...restField}
@@ -196,7 +196,7 @@ const AddProduct: React.FC = () => {
                 </Row>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button  htmlType="submit">
                         Add New Product
                     </Button>
                 </Form.Item>
