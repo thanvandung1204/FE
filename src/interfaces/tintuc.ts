@@ -1,5 +1,5 @@
 export interface Itintuc{
-    _id: number | string,
+    _id?: number | string,
     tieude:string;
     image: Array<string>;
     noidung:string;

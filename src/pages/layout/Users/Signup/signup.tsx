@@ -40,8 +40,8 @@ const Signup = () => {
           <div className="md:flex w-full">
             <div className="hidden md:block w-1/2 bg-black py-10 px-10">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVaf_e7v-FyOfDVswXesJXpy8HkKXAgpG8yQ&usqp=CAU"
-                className="w-full"
+                src="https://cf.shopee.vn/file/67461f130625a015fcfff3180aa1c0a9"
+                className="w-full  rounded-3xl"
                 alt=""
               />
             </div>

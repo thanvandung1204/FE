@@ -26,7 +26,6 @@ const getBase64 = (file: RcFile): Promise<string> =>
         reader.onerror = (error) => reject(error);
     });
 const UpLoand = ({ onImageUpLoad, onImageRemove, img }: Props) => {
-    console.log(img);
     const fileLists: ImageUploadFile[] = (img ? img : []).map((imageUrl, index) => ({
         uid: index.toString(),
         url: imageUrl,

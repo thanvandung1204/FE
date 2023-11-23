@@ -19,10 +19,10 @@ const Blog = () => {
                                     <h2 className="text-xl font-bold text-gray-900 sm:text-3xl ">Giới Thiệu</h2>
 
                                     <p className="mt-4 text-gray-500">
-                                        Chào mừng bạn đến với trang web bán quần áo thời trang - nơi bạn có thể khám phá những xu hướng thời trang mới nhất và tìm những bộ trang phục phù hợp với cá tính của riêng bạn. Chúng tôi tự hào là điểm đến tin cậy của các tín đồ thời trang, mang đến cho bạn những sản phẩm chất lượng cao, kiểu dáng đa dạng và sự phục vụ tận tình.
+                                        Chào mừng bạn đến với trang web bán Sneaker thời trang - nơi bạn có thể khám phá những mẫu sneaker mới nhất và tìm những đôi giày phù hợp với cá tính của riêng bạn. Chúng tôi tự hào là điểm đến tin cậy của các tín đồ thời trang, mang đến cho bạn những sản phẩm chất lượng cao, kiểu dáng đa dạng và sự phục vụ tận tình.
                                     </p>
                                 </header>
-                                <Link to={'/'}
+                                <Link to={'/list-productsAll'}
                                     className="inline-block px-12 py-3 mt-8 text-sm font-medium text-white transition bg-gray-900 border border-gray-900 rounded hover:shadow focus:outline-none focus:ring"
                                 >
                                     Shop All
@@ -81,7 +81,7 @@ const Blog = () => {
                             Thông Tin
                         </h2>
                         <p className="max-w-md mt-4 text-gray-500">
-                            Trang web của chúng tôi cung cấp một bộ sưu tập đa dạng và phong phú về quần áo thời trang cho cả nam và nữ. Bạn có thể dễ dàng tìm thấy những bộ trang phục từ những thương hiệu nổi tiếng đến những thiết kế độc quyền của chúng tôi.
+                            Trang web của chúng tôi cung cấp một bộ sưu tập đa dạng và phong phú về Sneaker thời trang cho cả nam và nữ. Bạn có thể dễ dàng tìm thấy những đôiSneaker từ những thương hiệu nổi tiếng đến những thiết kế độc quyền của chúng tôi.
                         </p>
                     </header>
                     <ul className="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -90,7 +90,11 @@ const Blog = () => {
                                 <li key={index}>
                                     <ImagePriview width={100} listImage={tintuc.image} />
                                     <Link to={`/blog/${tintuc._id}`} >
-                                        <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">{tintuc.tieude}</h2>
+                                        <h2 className="text-base text-gray-700 sm:text-xl font-mono my-5">{tintuc.tieude}</h2>
+                                        <div className="text-red-500 underline">
+                                            Xem thêm
+                                        </div>
+
                                     </Link>
                                 </li>
                             ))

@@ -1,16 +1,12 @@
 //add tintuc
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { Itintuc } from '../../../interfaces/tintuc';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Message from '../../action/Message/Message'
 import { useAddTintucMutation } from '@/api/tintuc';
-import Loading from '../../action/Loading/Loading';
 import UpLoand from '../../Image/UploadImageTintuc';
+import { Button, Cascader, Checkbox, Col, Form, Input, notification, Row, Select, Space } from 'antd';
 const ThemTinTuc = () => {
-  const [addtintuc, { isLoading }] = useAddTintucMutation();
   const navigate = useNavigate()
-  const { handleSubmit, register, formState: { errors }, watch } = useForm<any>()
+  const [addtintuc] = useAddTintucMutation();
   const [img, setImg] = useState<any>([]);
   const handleImage = (url: string) => {
     setImg([...img, url]);
@@ -18,68 +14,68 @@ const ThemTinTuc = () => {
   const handleImageRemove = (url: string) => {
     setImg((prevImg: any) => prevImg.filter((imageUrl: string) => imageUrl !== url));
   };
-  const onSubmit: SubmitHandler<Itintuc> = async (inputAdd: Itintuc) => {
-    try {
-      await (addtintuc(inputAdd) as never)
-      Message("success", "Thêm tin tức thành công")
-      navigate('/admin/tintuc')
-    } catch (error) {
-      Message("error", "Thêm tin tức thất bại, đã có tin tức này rồi")
+  const { TextArea } = Input;
+  const onFinish = (tintucs: any) => {
+    console.log(tintucs);
+    const product = {
+      tieude: tintucs.tieude,
+      noidung: tintucs.noidung,
+      image: img,
+      trang_thai: "active",
     }
-  } 
+
+
+    // return;
+    addtintuc(product as any);
+
+
+    navigate('/admin/tintuc');
+    notification.success({
+      message: 'Success',
+      description: 'Thêm sản phẩm thành công',
+    });
+  };
   return (
     <div>
-      <span className="text-2xl mb-6">Add New Tin Tức </span>
-      <form className='mt-5' onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-5">
-          <div>
-            <div className='mb-2'>
-              <label className=" mb-2" htmlFor="tieude">
-                Tiêu Đề
-              </label>
-              <input {...register('tieude', { required: true })} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tieude" type="text" placeholder="Tiêu đề ..."></input>
-              <p className='text-red-600 text-[20px]'>
-                {errors.tieude?.type === 'required' && <small className="form-text text-muted">Trường tieu de là bắt buộc</small>}
-              </p>
-            </div>
-            <div className='mb-2'>
-              <label className=" my-2" htmlFor="noidung">
-                Nội Dung
-              </label>
-              <input {...register('noidung', { required: true })} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="noidung" type="text" placeholder="Nội dung..."></input>
-              <p className='text-red-600 text-[20px]'>
-                {errors.noidung?.type === 'required' && <small className="form-text text-muted">Trường Name là bắt buộc</small>}
-              </p>
-            </div>
-            <div className='mb-2'>
-              <label className=" my-2" htmlFor="trangthai">
-                Trạng Thái
-              </label>
-              <select {...register("trang_thai", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option >Chọn trạng thái</option>
-                <option>active</option>
-                <option>deactive</option>
-              </select>
-              <p className='text-red-600 text-[20px]'>
-                {errors.trang_thai?.type === 'required' && <small className="form-text text-muted">Trường Name là bắt buộc</small>}
-              </p>
-            </div>
-            <div className='mb-2'>
-            <label className=" my-2" htmlFor="image">
-              Hình Ảnh
-            </label>
-            <UpLoand onImageUpLoad={handleImage} onImageRemove={handleImageRemove} />
-          </div>
+      <Form
+        name="basic"
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 20 }}
+        style={{ maxWidth: 800, margin: '0 auto', }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Tiêu Đề Tin tức "
+          name="tieude"
+          rules={[{ required: true, message: 'Please input your tieu de!' },]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Trạng thái" name="trang_thai">
+          <Select>
+            <Select.Option value="active">active</Select.Option>  <Select.Option value="deactive">deactive</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item label="Image" name="image">
+          <UpLoand onImageUpLoad={handleImage} onImageRemove={handleImageRemove} />
+        </Form.Item>
+        <Form.Item label="Nội Dung" name="noidung">
+          <TextArea rows={4} />
+        </Form.Item>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ backgroundColor: '#1890ff', color: '#fff' }}
+            onMouseEnter={(e) => e.target.style.backgroundColor = 'red'}  // Khi di chuột vào
+          >
+            Thêm Mới Tin Tức
+          </Button>
+        </Form.Item>
 
-          </div>
-          <div >
-          </div>
-        </div>
-        <div>
-          <button className="middle none center mr-4 rounded-lg bg-red-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            data-ripple-light="true">Add Tin Tức</button>
-        </div>
-      </form>
+      </Form>
     </div>
   )
 }

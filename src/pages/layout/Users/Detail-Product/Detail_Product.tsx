@@ -34,8 +34,8 @@ const Detail_Product = () => {
                             </Link>
                             <li className="underline underline-offset-4 hover:text-[#17c6aa] ">
                             </li>
-                            <li>/</li>
-                            <li>pro</li>
+                            <li>/ {product?.product.categoryId}</li>
+                            <li>/ {product?.product.name}</li>
                         </ul>
                     </div>
                     {/* name và rating */}
@@ -195,7 +195,7 @@ const Detail_Product = () => {
                         </div>
                     </div>
                     {/* Đánh giá */}
-                    <div className="rating-user">
+                    {/* <div className="rating-user">
                         <h1 className="my-5 text-xl font-medium">Đánh giá và Nhận xét </h1>
                         <div className="shadow-rating-user  min-h-[200px] w-full rounded-lg p-5 ">
                             <div className="content-rating min-h-[200px]  border-2 border-gray-300 rounded-2xl flex items-center">
@@ -207,13 +207,13 @@ const Detail_Product = () => {
 
                                 </div>
                             </div>
-                            {/* button đánh giá */}
+                            button đánh giá
                             <div className="button-rating-and-commnet mt-5 w-full mx-auto flex justify-center items-center ">
                                 <button className="btn-rating-and-commnet text-base bg-[#17c6aa] text-white hover:bg-black py-2 px-20 rounded-xl">
                                     Đánh giá ngay
                                 </button>
                             </div>
-                            {/* user-rating và đánh giá */}
+                            user-rating và đánh giá
                             <div className="user-rating-evaluate ">
                                 <div className="user-rating-evaluate-item mt-5">
                                     <div className="flex items-center gap-3">
@@ -248,7 +248,7 @@ const Detail_Product = () => {
 
 
 
-                    </div>
+                    </div> */}
                     {/* Coment user */}
                     <div className="comment">
                         <Comment />
