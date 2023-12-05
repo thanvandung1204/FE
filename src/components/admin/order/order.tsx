@@ -74,6 +74,7 @@ function App() {
       quantity: orderToEdit.quantity,
       type_pay: orderToEdit.type_pay,
       pay_status: orderToEdit.pay_status,
+      
     });
   }
   function newDataa() {
