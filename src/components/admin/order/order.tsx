@@ -106,7 +106,7 @@ function App() {
           window.location.reload();
         } else {
           console.error("Failed to update order");
-          
+
         }
       })
       .catch((error) => console.log(error));
@@ -124,11 +124,8 @@ function App() {
         <div className="posXX">Màu</div>
         <div className="posXX">TYPE Thanh toán</div>
         <div className="posXX">paid ?</div>
-
         <div className="posXX">Số lượng</div>
-
         <div className="posXX">Action</div>
-
         <div>
           <select
             className="posXX"
@@ -143,6 +140,7 @@ function App() {
           </select>
         </div>
         <div>
+
           <select
             className="posXX"
             onChange={(e) =>
@@ -155,6 +153,7 @@ function App() {
             ))}
           </select>
         </div>
+
         <div
           contentEditable
           className="posXX"
@@ -206,6 +205,7 @@ function App() {
         </div>
 
         <div
+        
           contentEditable
           className="posXX"
           onInput={(e) =>
