@@ -254,8 +254,9 @@ const Cart = () => {
 
                               type="checkbox"
                             />
+                            
                           </td>
-                          
+
                         </tr>
                       );
                     })}
