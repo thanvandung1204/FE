@@ -224,7 +224,7 @@ const Cart = () => {
                                 {cartProduct?.quantity}
                               </div>
                             </div>
-                            
+
                           </td>
                           <td className=" whitespace-nowrap  text-gray-700  text-xs lg:text-xl md:text-xl py-4 ">
                             {cartProduct?.productId?.price}
@@ -237,6 +237,7 @@ const Cart = () => {
                               <AiFillTool /> Sửa
                             </button>
                           </td>
+                          
                           <td
                             onClick={() =>
                               handelRemoveItem(cartProduct.productId._id)
