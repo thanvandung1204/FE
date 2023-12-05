@@ -130,6 +130,8 @@ const Cart = () => {
                   </tr>
                 </thead>
 
+                 
+
                 <tbody className="divide-y divide-gray-200 ">
                   {cart?.items &&
                     cart?.items.map((cartProduct, index) => {
