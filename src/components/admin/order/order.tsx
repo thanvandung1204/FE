@@ -74,6 +74,7 @@ function App() {
       quantity: orderToEdit.quantity,
       type_pay: orderToEdit.type_pay,
       pay_status: orderToEdit.pay_status,
+
     });
   }
   function newDataa() {
@@ -105,6 +106,7 @@ function App() {
           window.location.reload();
         } else {
           console.error("Failed to update order");
+
         }
       })
       .catch((error) => console.log(error));
@@ -122,11 +124,8 @@ function App() {
         <div className="posXX">Màu</div>
         <div className="posXX">TYPE Thanh toán</div>
         <div className="posXX">paid ?</div>
-
         <div className="posXX">Số lượng</div>
-
         <div className="posXX">Action</div>
-
         <div>
           <select
             className="posXX"
@@ -141,6 +140,7 @@ function App() {
           </select>
         </div>
         <div>
+
           <select
             className="posXX"
             onChange={(e) =>
@@ -153,6 +153,7 @@ function App() {
             ))}
           </select>
         </div>
+
         <div
           contentEditable
           className="posXX"
@@ -204,6 +205,7 @@ function App() {
         </div>
 
         <div
+
           contentEditable
           className="posXX"
           onInput={(e) =>
@@ -241,6 +243,7 @@ function App() {
           </div>
           <div className="bg-red-500 text-white px-4 py-2 rounded">Action</div>
         </div>
+
         {data.map((user) => (
           <form
             className="grid grid-cols-12 gap-4   text-gray-500 font-bold"
@@ -354,6 +357,7 @@ function App() {
               </select>
             </div>
             <div>
+              
               <select
                 className="posXX"
                 onChange={(e) => {
@@ -399,6 +403,7 @@ function App() {
         ))}
       </span>
     </div>
+    
   );
 }
 

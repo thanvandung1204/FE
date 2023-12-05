@@ -130,6 +130,8 @@ const Cart = () => {
                   </tr>
                 </thead>
 
+                 
+
                 <tbody className="divide-y divide-gray-200 ">
                   {cart?.items &&
                     cart?.items.map((cartProduct, index) => {
@@ -198,6 +200,7 @@ const Cart = () => {
                                   >
                                     {s.name}
                                   </option>
+
                                 ))}
                               </select>
                             </span>
@@ -221,6 +224,7 @@ const Cart = () => {
                                 {cartProduct?.quantity}
                               </div>
                             </div>
+
                           </td>
                           <td className=" whitespace-nowrap  text-gray-700  text-xs lg:text-xl md:text-xl py-4 ">
                             {cartProduct?.productId?.price}
@@ -233,6 +237,7 @@ const Cart = () => {
                               <AiFillTool /> Sửa
                             </button>
                           </td>
+                          
                           <td
                             onClick={() =>
                               handelRemoveItem(cartProduct.productId._id)
@@ -241,6 +246,7 @@ const Cart = () => {
                           >
                             <BsFillTrash3Fill />
                           </td>
+
                           <td>
                             <input
                               checked={check.some(
@@ -250,10 +256,16 @@ const Cart = () => {
                                 handleCheckboxChange(cartProduct._id)
                               }
                               className="w-[35px]"
+<<<<<<< HEAD
                               
+=======
+
+>>>>>>> backup2
                               type="checkbox"
                             />
+                            
                           </td>
+
                         </tr>
                       );
                     })}
