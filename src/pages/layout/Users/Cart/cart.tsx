@@ -241,6 +241,7 @@ const Cart = () => {
                           >
                             <BsFillTrash3Fill />
                           </td>
+                          
                           <td>
                             <input
                               checked={check.some(
