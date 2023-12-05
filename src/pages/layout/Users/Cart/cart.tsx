@@ -200,6 +200,7 @@ const Cart = () => {
                                   >
                                     {s.name}
                                   </option>
+
                                 ))}
                               </select>
                             </span>
@@ -223,6 +224,7 @@ const Cart = () => {
                                 {cartProduct?.quantity}
                               </div>
                             </div>
+                            
                           </td>
                           <td className=" whitespace-nowrap  text-gray-700  text-xs lg:text-xl md:text-xl py-4 ">
                             {cartProduct?.productId?.price}
