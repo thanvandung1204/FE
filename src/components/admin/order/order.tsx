@@ -205,7 +205,7 @@ function App() {
         </div>
 
         <div
-        
+
           contentEditable
           className="posXX"
           onInput={(e) =>
@@ -243,6 +243,7 @@ function App() {
           </div>
           <div className="bg-red-500 text-white px-4 py-2 rounded">Action</div>
         </div>
+        
         {data.map((user) => (
           <form
             className="grid grid-cols-12 gap-4   text-gray-500 font-bold"
