@@ -81,18 +81,7 @@ const Item = ({ buttonAdd, product, icon, infoProduct = true }: Props) => {
                             </i>
                             <div className="list-color">
                                 <ul className="flex flex-col gap-3">
-                                    <li>
-                                        {
-                                            color?.color.map((color: IColor) => (
-                                                <div className="flex gap-2">
-
-                                                    <span className="text-[#d34949] text-2xl  font-semibold   text-base">
-                                                        {color.name}
-                                                    </span>
-                                                </div>
-                                            ))
-                                        }
-                                    </li>
+                                 
                                 </ul>
                             </div>
                         </div>

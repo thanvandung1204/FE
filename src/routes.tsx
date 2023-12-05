@@ -6,9 +6,14 @@ import Order from "./components/admin/order/order"
 import AddProduct from "./components/admin/Product/AddProduct"
 import Size from "./components/admin/size/size"
 import AddSize from "./components/admin/size/AddSize"
+import UpdateSize from "./components/admin/size/UpdateSize";
+
+import Color from "./components/admin/color/color"
+import Addcolor from "./components/admin/color/Addcolor"
+import UpdateColor from "./components/admin/color/Updatecolor";
+
 import UpdateProduct from "./components/admin/Product/UpdateProduct";
 import RecycleBin from "./components/admin/Product/recycle-bin";
-import UpdateSize from "./components/admin/size/UpdateSize";
 import ImageProduct from "./components/admin/imageProduct/imageProduct"
 import AddImage from "./components/admin/imageProduct/AddImage";
 import HomeAdmin from "./pages/layout/Admin/home_admin";
@@ -69,6 +74,7 @@ export const routers = createBrowserRouter([
         path: "",
         element: <HomePages />,
       },
+  
       {
         path: "/contact",
         element: <Contact />,
@@ -154,6 +160,18 @@ export const routers = createBrowserRouter([
       {
         path: "size/update/:id",
         element: <UpdateSize />,
+      },
+      {
+        path: "color",
+        element: <Color />,
+      },
+      {
+        path: "color/add",
+        element: <Addcolor />,
+      },
+      {
+        path: "color/update/:id",
+        element: <UpdateColor />,
       },
       {
         path: "imageProduct",

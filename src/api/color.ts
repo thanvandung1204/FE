@@ -1,6 +1,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IColor } from '@/interfaces/color';
+import { IColor } from '@/interfaces/name';
 const colorApi = createApi({
     reducerPath: "color",
     baseQuery: fetchBaseQuery({

@@ -53,6 +53,12 @@ const items: MenuItem[] = [
       getItem(<Link to="/admin/size/add">Add</Link>, '16'),
    
     ]),
+    getItem(<Link to="/admin/color">color</Link>, '38', <ControlOutlined />,
+    [
+      getItem(<Link to="/admin/color">List</Link>, '39',),
+      getItem(<Link to="/admin/color/add">Add</Link>, '40'),
+   
+    ]),
   getItem(<Link to="/admin/imageProduct">ImgProduct</Link>, '18', <FileImageOutlined/>,
     [
       getItem(<Link to="/admin/imageProduct">List</Link>, '19',),
@@ -89,6 +95,8 @@ const items: MenuItem[] = [
     getItem(<Link to="/admin/role/add">Add</Link>, '35'),
   ]),
   getItem(<Link to="/admin/sale">Sale</Link>, '36', <TeamOutlined />, ),
+  getItem(<Link to="/admin/order">Order</Link>, '37', <TeamOutlined />, ),
+
 ];
 
 const AdminLayout: React.FC = () => {
