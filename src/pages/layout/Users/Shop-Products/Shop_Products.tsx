@@ -8,13 +8,12 @@ import { MdOutlineDiscount } from "react-icons/md";
 import { RiTShirtLine } from "react-icons/ri";
 import { PiStarThin } from "react-icons/pi";
 import { AiOutlineEye } from "react-icons/ai";
-import Loading from "../../../../components/action/Loading/Loading";
-import Comment from "@/components/admin/comment/Comment";
+
 import { useGetProductsQuery } from "@/api/product";
 import { IProduct } from "@/interfaces/product";
 import { useGetCategorysQuery } from "../../../../api/category";
 import { ICategory } from "../../../../interfaces/category";
-import React, { useEffect } from "react";
+
 const Shop_Products = () => {
   const { data: productData } = useGetProductsQuery();
   console.log(productData);

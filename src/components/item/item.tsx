@@ -1,6 +1,6 @@
-import { Rating, Tooltip } from "@mui/material";
+
 import { Link } from "react-router-dom";
-import Image from "../Image/ImagePriview";
+
 import { AiFillEye } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
 // import Icon from "../Icon/icon";
@@ -8,11 +8,10 @@ import { AiTwotoneHeart } from "react-icons/ai";
 import { IProduct } from "../../interfaces/product";
 // import FormatterPrice from "../FormatterPrice/FormatterPrice";
 import { useState } from "react";
-import { useGetProductsQuery } from "@/api/product";
+
 import ImagePriview from '../Image/ImagePriview';
 import { useGetColorsQuery } from "@/api/color";
-import { IColor } from "@/interfaces/color";
-import { Option } from "antd/lib/mentions";
+
 type Props = {
     buttonAdd?: string;
     product?: IProduct;

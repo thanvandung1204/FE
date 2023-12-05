@@ -10,7 +10,7 @@ import React from "react";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
-import { useSignoutMutation } from "@/api/user";
+
 import { useGetCartQuery } from "@/api/cart";
 
 const items: MenuProps["items"] = [
