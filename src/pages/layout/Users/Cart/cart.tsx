@@ -250,6 +250,7 @@ const Cart = () => {
                                 handleCheckboxChange(cartProduct._id)
                               }
                               className="w-[35px]"
+                              
                               type="checkbox"
                             />
                           </td>
